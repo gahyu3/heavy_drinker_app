@@ -32,6 +32,9 @@ module HeavyDrinkerApp
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
+
+    config.generators.helper = nil
+
     config.generators.system_tests = nil
   end
 end

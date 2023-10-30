@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  get '/' , to: 'static_pages#top'
+  root 'static_pages#top'
+
+  resources :users, only: %i[new create]
 end

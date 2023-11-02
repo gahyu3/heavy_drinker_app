@@ -1,0 +1,17 @@
+<div class="container-fluid d-flex align-items-center py-4 bg-body-tertiary">
+  <div class="form-signin w-100 m-auto">
+    <%= form_with url: login_path, local: true, class: 'text-center' do |f| %>
+      <h1 class="h3 mb-3 fw-normal">ログイン</h1>
+      <div class="form-floating">
+        <%= f.email_field :email, class: 'form-control', id: 'floatingInput'%>
+        <label for="floatingInput">メールアドレス</label>
+      </div>
+      <div class="form-floating">
+        <%= f.password_field :password, class: 'form-control', id: 'floatingPassword'%>
+        <label for="floatingPassword">パスワード</label>
+      </div>
+      <%= f.submit 'ログイン', class: 'btn btn-primary w-100 py-2' %>
+      <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
+    <% end %>
+  </div>
+</div>

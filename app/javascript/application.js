@@ -3,5 +3,5 @@
 //= require popper
 //= require bootstrap-sprockets
 import "@hotwired/turbo-rails"
-Turbo.session.drive = false;
 import "controllers"
+import "fontawesome"

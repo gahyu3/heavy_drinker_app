@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <%= link_to root_path , class: "navbar-brand" do %>
+      <%= image_tag "logo.png", size: "100x80" %>
+    <% end %>
+
+    <button class='navbar-toggler' data-toggle='collapse' data-target='#navbarSupportedContent'
+      aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+      <span class='navbar-toggler-icon'></span>
+    </button>
+      <div class="justify-content-end">
+        <%= link_to "新規登録", new_user_path, class: "btn btn-primary me-4" %>
+        <%= link_to "ログイン", login_path, class: "btn btn-primary me-5" %>
+      </div>
+
+  </div>
+</nav>

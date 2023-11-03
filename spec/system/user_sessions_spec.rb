@@ -24,6 +24,7 @@ RSpec.describe "UserSessions", type: :system do
           fill_in "パスワード", with: "password"
           click_button "ログイン"
           expect(page).to have_current_path(login_path)
+          expect(page).to have_content "ログインできません"
         end
       end
     end

@@ -27,6 +27,7 @@ RSpec.describe "Users", type: :system do
           fill_in "パスワード確認", with: "password"
           click_button "登録"
           expect(page).to have_current_path(new_user_path)
+          expect(page).to have_content "ユーザーネームを入力してください"
         end
       end
     end

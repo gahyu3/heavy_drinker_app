@@ -1,0 +1,22 @@
+<div class="container-fluid custom-height">
+  <div class="row">
+    <div class="text-center">
+      <%= form_with model: @drink, local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "from-control" %>
+      </div>
+      <div class="from-group">
+        <%= f.label :volume %>
+        <%= f.text_field :volume, pattern: "[0-9]*", title: "数字のみ入力してください", class: "from-control" %>
+      </div>
+      <div class="from-group">
+        <%= f.label :degree %>
+        <%= f.text_field :degree, pattern: "[0-9]*", title: "数字のみ入力してください", class: "from-control" %>
+        <%= f.collection_select :category_id, Category.all, :id, :name %>
+      </div>
+        <%= f.submit t('defaults.add'), class: 'btn btn-primary py-2' %>
+      <% end %>
+    </div>
+  </div>
+</div>

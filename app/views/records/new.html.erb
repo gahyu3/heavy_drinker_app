@@ -1,0 +1,32 @@
+<div class="container-fluid custom-height">
+  <h1><%= @day_date %></h1>
+  <div class="row">
+    <div class="col">
+      <i class="fa fa-beer-mug-empty fa-3x"></i>
+    </div>
+    <div class="col">
+      <i class="fa fa-wine-bottle fa-3x"></i>
+    </div>
+    <div class="col">
+      <i class="fa-solid fa-martini-glass-citrus fa-3x"></i>
+    </div>
+  </div>
+
+  <%= form_with  model: @record, local: true do |f| %>
+    <table class="table">
+      <tbody>
+        <% @drinks.each do |drink| %>
+          <tr>
+              <td><%= f.hidden_field 'record[][date]', value: @day_date %></td>
+              <td><%= f.hidden_field 'record[][drink_id]', value: drink.id %></td>
+              <td><%= f.label drink.name, for: "drink_#{drink.id}" %></td>
+              <td><%= f.number_field 'record[][quantity]',id: "drink_#{drink.id}", value: 0, min: 0 %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+      <%= link_to t('.add_alcohol'), new_drink_path(selected_date: @day_date) , class: "btn btn-primary" %>
+      <p>純アルコール量：</p>
+      <%= f.submit t('defaults.save'), class: 'btn btn-primary py-2' %>
+  <% end %>
+</div>

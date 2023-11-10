@@ -4,6 +4,8 @@ ja:
     register: '登録'
     logout: 'ログアウト'
     new_register: '新規登録'
+    save: '保存'
+    add: '追加'
   users:
     new:
       title: '新規登録'
@@ -11,3 +13,6 @@ ja:
     new:
       title: 'ログイン'
       password_forget: 'パスワードをお忘れの方はこちら'
+  records: 
+    new:
+      add_alcohol: 'お酒を追加する'

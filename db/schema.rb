@@ -10,9 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_26_070346) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_04_122853) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "drinks", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "degree", null: false
+    t.integer "volume", null: false
+    t.bigint "category_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_drinks_on_category_id"
+    t.index ["user_id"], name: "index_drinks_on_user_id"
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.date "date", null: false
+    t.integer "quantity", null: false
+    t.bigint "drink_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drink_id"], name: "index_records_on_drink_id"
+    t.index ["user_id"], name: "index_records_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -25,4 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_26_070346) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "drinks", "categories"
+  add_foreign_key "drinks", "users"
+  add_foreign_key "records", "drinks"
+  add_foreign_key "records", "users"
 end

@@ -15,15 +15,16 @@
               <%= link_to 'ランキング', "#", class: "nav-link active" %>
             </li>
           </ul>
+                <%= image_tag current_user.avatar.url, class: 'rounded-circle', size: "50x50" %>
             <div class="row justify-content-end">
               <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.name %></a>
                 <ul class="menu">
-                  <li><%= link_to "アカウント設定", "#", class: "dropdown-item" %></li>
+                  <li><%= link_to "アカウント設定", edit_profile_path, class: "dropdown-item" %></li>
                   <li><%= link_to "通知設定", "#", class: "dropdown-item" %></li>
                   <li><%= link_to t('defaults.logout') , logout_path, class: "dropdown-item", data: { turbo_method: :delete }%></li>
                 </ul>
-              </div>
+              </>
             </div>
               <i class="fa-regular fa-bell"></i>
         </div>

@@ -8,6 +8,7 @@ ja:
         email: 'メールアドレス'
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
+        avatar: 'アバターアイコン'
       drink:
         name: '品名'
         volume: '量'

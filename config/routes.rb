@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :records, only: %i[index new create edit update]
   resources :drinks, only: %i[new create]
+  resource :profile, only: %i[edit update]
 end

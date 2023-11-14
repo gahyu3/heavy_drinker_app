@@ -1,0 +1,16 @@
+example_id                                   | status | run_time        |
+-------------------------------------------- | ------ | --------------- |
+./spec/system/drinks_spec.rb[1:1:1]          | passed | 1.94 seconds    |
+./spec/system/drinks_spec.rb[1:1:2]          | passed | 1.59 seconds    |
+./spec/system/profiles_spec.rb[1:1:1]        | passed | 0.9734 seconds  |
+./spec/system/profiles_spec.rb[1:1:2]        | passed | 3.61 seconds    |
+./spec/system/profiles_spec.rb[1:2:1]        | passed | 0.92857 seconds |
+./spec/system/records_spec.rb[1:1:1]         | passed | 0.25514 seconds |
+./spec/system/records_spec.rb[1:2:1:1:1]     | passed | 1.17 seconds    |
+./spec/system/records_spec.rb[1:2:1:1:2]     | passed | 1.24 seconds    |
+./spec/system/records_spec.rb[1:2:2]         | passed | 0.98181 seconds |
+./spec/system/user_sessions_spec.rb[1:1:1:1] | passed | 0.66664 seconds |
+./spec/system/user_sessions_spec.rb[1:1:2:1] | passed | 0.48175 seconds |
+./spec/system/user_sessions_spec.rb[1:2:1:1] | passed | 0.81616 seconds |
+./spec/system/users_spec.rb[1:1:1:1:1]       | passed | 4.6 seconds     |
+./spec/system/users_spec.rb[1:1:1:2:1]       | passed | 0.72027 seconds |

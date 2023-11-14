@@ -1,6 +1,6 @@
 <%= month_calendar do |date| %>
   <% if current_user.records.exists?(date: date) %>
-      <%= link_to date.day, edit_record_path(current_user.records.find_by(date: date),selected_date: date) %>
+      <%= link_to date.day, edit_record_path(current_user.records.find_by(date: date),selected_date: date), class: "day_#{date}"  %>
       <div><i class="fa-solid fa-champagne-glasses"></i></div>
     <% else %>
       <%= link_to date.day, new_record_path(selected_date: date), class: "day_#{date}"  %>

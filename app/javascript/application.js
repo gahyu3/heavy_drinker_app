@@ -5,3 +5,5 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "fontawesome"
+import "chartkick"
+import "Chart.bundle"

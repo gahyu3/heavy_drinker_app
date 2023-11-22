@@ -96,6 +96,7 @@ GEM
       image_processing (~> 1.1)
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
+    chartkick (5.0.4)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -113,6 +114,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (3.2.2)
+      i18n (>= 1.8.11, < 2)
     faraday (2.7.11)
       base64
       faraday-net_http (>= 2.0, < 3.1)
@@ -332,9 +335,11 @@ DEPENDENCIES
   bootstrap (~> 5.0.2)
   capybara
   carrierwave
+  chartkick
   debug
   dockerfile-rails (>= 1.5)
   factory_bot_rails
+  faker
   importmap-rails
   jbuilder
   jquery-rails

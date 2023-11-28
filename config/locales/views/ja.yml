@@ -7,6 +7,7 @@ ja:
     save: '保存'
     add: '追加'
     update: '更新'
+    indicate: '表示'
   users:
     new:
       title: '新規登録'
@@ -20,3 +21,6 @@ ja:
   profiles:
     edit:
       title: 'アカウント設定'
+  ranks:
+    index:
+      title: 'ランキング'

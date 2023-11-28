@@ -1,0 +1,25 @@
+<div class="container-fluid custom-height">
+  <h1><%= t('.title') %></h1>
+  <div>
+    <%= "#{@ranks_time[0]}" "~" "#{@ranks_time[1]}"%>
+  </div>
+    <div class="row">
+      <%= form_with(url: { controller: 'ranks', action: 'index' }, method: 'get', local: false) do |f| %>
+        <%= f.radio_button :period, 'month', checked: params[:period] == 'month', id: 'month-radio' %>
+        <%= f.label 'month-radio','月間' %>
+        <%= f.radio_button :period, 'week', checked: params[:period] == 'week', id: 'week-radio' %>
+        <%= f.label 'week-radio','週間' %>
+        <%= f.radio_button :period, 'day', checked: params[:period] == 'day', id: 'day-radio' %>
+        <%= f.label 'day-radio','日間' %>
+        <%= f.submit t('defaults.indicate'), class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+    <table>
+      <tbody>
+        <%= render "ranks/ranks", ranks: @ranks %>
+      </tbody>
+    </table>
+
+    
+
+</div>

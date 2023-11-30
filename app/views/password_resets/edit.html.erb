@@ -1,0 +1,19 @@
+<h1><%= t('.title') %></h1>
+<%= form_with model: @user, url: password_reset_path(@token), local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= @user.email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit t('defaults.send') ,class:  "btn btn-primary"%>
+  </div>
+<% end %>

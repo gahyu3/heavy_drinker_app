@@ -8,6 +8,8 @@ ja:
     add: '追加'
     update: '更新'
     indicate: '表示'
+    send: '送信'
+    password_reset: 'パスワードリセット'
   users:
     new:
       title: '新規登録'
@@ -21,6 +23,10 @@ ja:
   profiles:
     edit:
       title: 'アカウント設定'
+      password_reset: 'パスワード再設定'
   ranks:
     index:
       title: 'ランキング'
+  password_resets:
+    edit:
+      title: 'パスワードリセット'

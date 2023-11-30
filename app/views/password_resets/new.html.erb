@@ -1,0 +1,7 @@
+<%= form_with url: password_resets_path, local: true do |f| %>
+  <div class="container">
+    <%= f.label :email, User.human_attribute_name(:email) %><br />
+    <%= f.text_field :email %>
+    <%= f.submit t('defaults.send'), class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,26 @@
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel"><%= t('.title') %></h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="閉じる"></button>
+  </div>
+  <div class="offcanvas-body">
+    <table class="table">
+      <% user_rank.each do |rank|%>
+      <tr>
+        <% if rank.day? %>
+          <td><%= rank.start_date.strftime("%m月%d日") %>のランキングは<%= rank.rank %>位でした</td>
+        <% elsif rank.week? %>
+          <td><%= rank.start_date.strftime("%m月%d日") %>~<%= rank.end_date.strftime("%m月%d日") %>のランキングは<%= rank.rank %>位でした</td>
+        <% else %>
+          <td><%= rank.start_date.strftime("%m月") %>のランキングは<%= rank.rank %>位でした</td>
+        <% end %>
+        
+      </tr>
+        <% unless rank.check? %>
+          <% rank.update(check: true) %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>

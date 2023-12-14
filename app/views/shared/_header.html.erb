@@ -6,13 +6,13 @@
         <div class="collapse navbar-collapse" id="Navbar">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <%= link_to '飲酒量記録', records_path, class: "nav-link active" %>
+              <%= link_to t('.record'), records_path, class: "nav-link active" %>
             </li>
             <li class="nav-item">
-              <%= link_to 'データ',  user_path(current_user), class: "nav-link active" %>
+              <%= link_to t('.date'),  user_path(current_user), class: "nav-link active" %>
             </li>
             <li class="nav-item">
-              <%= link_to 'ランキング', ranks_path, class: "nav-link active" %>
+              <%= link_to t('.rank'), ranks_path, class: "nav-link active" %>
             </li>
           </ul>
                 <%= image_tag current_user.avatar.url, class: 'rounded-circle', size: "50x50" %>
@@ -20,13 +20,21 @@
               <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.name %></a>
                 <ul class="menu">
-                  <li><%= link_to "アカウント設定", edit_profile_path, class: "dropdown-item" %></li>
-                  <li><%= link_to "通知設定", "#", class: "dropdown-item" %></li>
+                  <li><%= link_to t('.account_settings'), edit_profile_path, class: "dropdown-item" %></li>
+                  <li><%= link_to t('.notification_settings'), "#", class: "dropdown-item" %></li>
                   <li><%= link_to t('defaults.logout') , logout_path, class: "dropdown-item", data: { turbo_method: :delete }%></li>
                 </ul>
               </>
             </div>
-              <i class="fa-regular fa-bell"></i>
+            <% if current_user.notifications.where(check: false).present? %>
+              <i class= "fa-regular fa-bell" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+              <%= render "shared/notification", user_rank: @user_rank %>
+              <p>新着があります</p>
+            <% else %>
+              <i class= "fa-regular fa-bell-slash" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+              <%= render "shared/notification", user_rank: @user_rank %>
+            <% end %>
+
         </div>
       </div>
     </nav>

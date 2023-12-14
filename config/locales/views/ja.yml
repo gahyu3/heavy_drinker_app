@@ -10,6 +10,16 @@ ja:
     indicate: '表示'
     send: '送信'
     password_reset: 'パスワードリセット'
+  shared:
+    header:
+      record: '飲酒量記録'
+      date: 'データ'
+      rank: 'ランキング'
+      account_settings: 'アカウント設定'
+      notification_settings: '通知設定'
+    notification:
+      title: 'お知らせ'
+
   users:
     new:
       title: '新規登録'

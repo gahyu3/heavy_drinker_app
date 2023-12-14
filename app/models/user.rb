@@ -13,4 +13,27 @@ class User < ApplicationRecord
 
   has_many :records, dependent: :destroy
   has_many :drinks, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+
+  def self.rank_day_user
+    select('users.id, users.name, round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity','RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+    .joins(records: :drink)
+    .group('users.id')
+    .where(records: { date: Date.yesterday.beginning_of_day + 9.hours..Date.today.beginning_of_day + 9.hours })
+  end
+
+  def self.rank_week_user
+    select('users.id, users.name, round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity','RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+    .joins(records: :drink)
+    .group('users.id')
+    .where(records: { date: Date.yesterday.beginning_of_week + 9.hours..Date.yesterday.end_of_week + 1 + 9.hours })
+  end
+
+  def self.rank_month_user
+    select('users.id, users.name, round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity','RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+    .joins(records: :drink)
+    .group('users.id')
+    .where(records: { date: Date.yesterday.beginning_of_month + 9.hours..Date.yesterday.end_of_month + 1 + 9.hours })
+  end
+
 end

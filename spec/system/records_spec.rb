@@ -23,7 +23,7 @@ RSpec.describe "Records", type: :system do
         before do
           category
           drink
-          click_on(class: "day_2023-11-01", text: "1")
+          click_on(class: "day_#{Date.today}", text: "1")
         end
         it "登録が成功する" do
           fill_in drink.name, with: 1

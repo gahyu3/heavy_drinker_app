@@ -14,7 +14,7 @@ RSpec.describe "Drinks", type: :system do
       category
     end
     it "登録が成功する" do
-      click_on(class: "day_2023-11-01", text: "1")
+      click_on(class: "day_#{Date.today}", text: "1")
       click_on "お酒を追加する"
       fill_in "品名", with: "飲み物"
       fill_in "量", with: 500
@@ -26,7 +26,7 @@ RSpec.describe "Drinks", type: :system do
     end
 
     it "登録が失敗する" do
-      click_on(class: "day_2023-11-01", text: "1")
+      click_on(class: "day_#{Date.today}", text: "1")
       click_on "お酒を追加する"
       fill_in "品名", with: ""
       fill_in "量", with: 500

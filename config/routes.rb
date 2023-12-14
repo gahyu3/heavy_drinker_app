@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :ranks, only: %i[index]
   resource :profile, only: %i[edit update]
   resources :password_resets, only: %i[new create edit update]
+  resources :notifications, only: %i[index]
 end

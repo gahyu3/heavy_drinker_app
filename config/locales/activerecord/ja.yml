@@ -13,3 +13,7 @@ ja:
         name: '品名'
         volume: '量'
         degree: 'アルコール度数'
+      notification_setting:
+        day: '日間ランキング'
+        week: '週間ランキング'
+        month: '月間ランキング'

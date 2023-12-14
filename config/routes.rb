@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :records, only: %i[index new create edit update]
   resources :drinks, only: %i[new create]
   resources :ranks, only: %i[index]
-  resource :profile, only: %i[edit update]
   resources :password_resets, only: %i[new create edit update]
   resources :notifications, only: %i[index]
+  resource :profile, only: %i[edit update]
+  resource :notification_setting, only: %i[edit update]
 end

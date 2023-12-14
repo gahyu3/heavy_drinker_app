@@ -1,0 +1,20 @@
+<div class="container-fluid d-flex align-items-center py-4 bg-body-tertiary">
+  <div class="form-signin w-100 m-auto">
+    <%= form_with model: @notification_setting, url: notification_setting_path, local: false do |f| %>
+      <div class="form-check form-switch">
+        <%= f.label :day, class: "form-check-label" %>
+        <%= f.check_box :day, class: "form-check-input", roll: "switch", checked: @notification_setting.day? %>
+      </div>
+      <div class="form-check form-switch">
+        <%= f.label :week, class: "form-check-label" %>
+        <%= f.check_box :week, class: "form-check-input", roll: "switch", checked: @notification_setting.week? %>
+      </div>
+      <div class="form-check form-switch">
+        <%= f.label :month, class: "form-check-label" %>
+        <%= f.check_box :month, class: "form-check-input", roll: "switch", checked: @notification_setting.month? %>
+      </div>
+      <%= f.submit t('defaults.update'), class: 'btn btn-primary w-100 py-2' %>
+    <% end %>
+  </div>
+</div>
+

@@ -21,28 +21,6 @@ class RecordsController < ApplicationController
     end
 
 
-    # @drink = Category.find(params[:id]).drinks
-    # respond_to do |format|
-    #   format.turbo_stream
-    #   format.html { redirect_to root_path } # もしJavaScriptが無効な場合のフォールバック
-    # end
-
-    # if params[:category_id].present?
-    #   # 選択されたカテゴリーに応じたお酒を取得
-    #   @drinks = Drink.where(category_id: params[:category_id])
-    # else
-    #   @drinks = Drink.all
-    # end
-  
-    # respond_to do |format|
-    #   format.html 
-    #   format.turbo_stream do
-    #     render turbo_stream: turbo_stream.replace('drinks_list', partial: 'records/list', locals: { drinks: @drinks })
-    #   end
-    # end
-
-
-    
   end
 
   def create

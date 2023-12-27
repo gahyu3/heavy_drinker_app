@@ -1,32 +1,23 @@
 <div class="container-fluid custom-height">
   <h1><%= @day_date %></h1>
   <div class="row">
-    <div class="col">
-      <i class="fa fa-beer-mug-empty fa-3x"></i>
-    </div>
-    <div class="col">
-      <i class="fa fa-wine-bottle fa-3x"></i>
-    </div>
-    <div class="col">
-      <i class="fa-solid fa-martini-glass-citrus fa-3x"></i>
-    </div>
+    <% @category.each do |category|%>
+      <div data-controller="count" class="col">
+          <%= link_to new_record_path(category_id: category.id), class: "btn #{category.id == @selected_category_id.to_i ? 'btn-light active' : 'btn-light'}" do %>
+            <%= image_tag "#{category.name}.png", size: "50x50", alt: category.name %>
+          <% end %>
+          <p><%= category.name %></p>
+      </div>
+    <% end %>
   </div>
-
-  <%= form_with  model: @record, local: true do |f| %>
-    <table class="table">
-      <tbody>
-        <% @drinks.each do |drink| %>
-          <tr>
-              <td><%= f.hidden_field 'record[][date]', value: @day_date %></td>
-              <td><%= f.hidden_field 'record[][drink_id]', value: drink.id %></td>
-              <td><%= f.label drink.name, for: "drink_#{drink.id}" %></td>
-              <td><%= f.number_field 'record[][quantity]',id: "drink_#{drink.id}", value: 0, min: 0 %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-      <%= link_to t('.add_alcohol'), new_drink_path(selected_date: @day_date) , class: "btn btn-primary" %>
-      <p>純アルコール量：</p>
-      <%= f.submit t('defaults.save'), class: 'btn btn-primary py-2' %>
-  <% end %>
+    <%= form_with  model: @record, local: true do |f| %>
+      <table class="table">
+        <tbody>
+            <%= render partial: 'records/list', locals: { drinks: @drinks, records: @records, day_date: @day_date, f: f } %>
+        </tbody>
+      </table>
+        <%= link_to t('.add_alcohol'), new_drink_path(selected_date: @day_date, selected_category: @selected_category_id) , class: "btn btn-primary" %>
+        <p>純アルコール量：</p>
+        <%= f.submit t('defaults.save'), class: 'btn btn-primary py-2' %>
+    <% end %>
 </div>

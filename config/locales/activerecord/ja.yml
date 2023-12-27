@@ -10,9 +10,10 @@ ja:
         password_confirmation: 'パスワード確認'
         avatar: 'アバターアイコン'
       drink:
-        name: '品名'
-        volume: '量'
-        degree: 'アルコール度数'
+        name: '品名：'
+        volume: '量：'
+        degree: 'アルコール度数：'
+        category_id: 'カテゴリー：'
       notification_setting:
         day: '日間ランキング'
         week: '週間ランキング'

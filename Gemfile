@@ -48,7 +48,7 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem 'bootstrap', '~> 5.0.2'
+gem 'bootstrap', '5.3.0'
 
 gem 'jquery-rails'
 
@@ -72,6 +72,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem 'faker'
+  gem 'pry-rails'
 end
 
 group :test do
@@ -100,3 +101,5 @@ gem "redis", "~> 5.0"
 gem "sentry-ruby", "~> 5.12"
 
 gem "sentry-rails", "~> 5.12"
+
+gem "sassc-rails", "~> 2.1"

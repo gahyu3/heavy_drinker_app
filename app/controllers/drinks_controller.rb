@@ -3,6 +3,7 @@ class DrinksController < ApplicationController
   def new
     @drink = Drink.new
     @day_date = session[:selected_date]
+    @selected_category_id = params[:selected_category]
   end
   
   def create

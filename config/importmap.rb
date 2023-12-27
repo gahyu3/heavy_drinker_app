@@ -10,3 +10,4 @@ pin 'fontawesome', to: 'https://kit.fontawesome.com/0d3180419d.js', preload: tru
 pin "chartkick", to: "chartkick.js"
 pin "Chart.bundle", to: "Chart.bundle.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
+pin_all_from 'app/javascript/custam', under: 'custam'

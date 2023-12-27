@@ -24,7 +24,6 @@
                   <li><%= link_to t('.notification_settings'), edit_notification_setting_path, class: "dropdown-item" %></li>
                   <li><%= link_to t('defaults.logout') , logout_path, class: "dropdown-item", data: { turbo_method: :delete }%></li>
                 </ul>
-              </>
             </div>
             <% if current_user.notifications.where(check: false).present? %>
               <i class= "fa-regular fa-bell" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>

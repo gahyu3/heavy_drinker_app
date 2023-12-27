@@ -8,12 +8,16 @@
       </div>
       <div class="from-group">
         <%= f.label :volume %>
-        <%= f.text_field :volume, pattern: "[0-9]*", title: "数字のみ入力してください", class: "from-control" %>
+        <%= f.text_field :volume, pattern: "[0-9]*", title: "数字のみ入力してください", class: "from-control" %>ml
       </div>
       <div class="from-group">
         <%= f.label :degree %>
-        <%= f.text_field :degree, pattern: "[0-9]*", title: "数字のみ入力してください", class: "from-control" %>
-        <%= f.collection_select :category_id, Category.all, :id, :name %>
+        <%= f.text_field :degree, pattern: "[0-9]*", title: "数字のみ入力してください", class: "from-control" %>%
+      </div>
+      <div class="from-group">
+        <%= f.label :category_id %>
+        <%= f.hidden_field :category_id, value: @selected_category_id %>
+        <%= Category.find(@selected_category_id).name %>
       </div>
         <%= f.submit t('defaults.add'), class: 'btn btn-primary py-2' %>
       <% end %>

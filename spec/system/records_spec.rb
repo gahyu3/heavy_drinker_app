@@ -15,18 +15,18 @@ RSpec.describe "Records", type: :system do
       login(user)
     end
 
-    let(:category) { create(:category) }
-    let(:drink) { create(:drink, user: user, category: category) }
+    let(:category) { create(:category, name: "ビール") }
+    let(:drink) { create(:drink, name: "アサヒ", degree: 5, volume: 500, user: user, category: category) }
     
     describe "飲酒記録登録" do
       context "記録の登録" do
         before do
-          category
-          drink
-          click_on(class: "day_#{Date.today}", text: "1")
+          find(".day_#{Date.today}").click
         end
         it "登録が成功する" do
-          fill_in drink.name, with: 1
+          category
+          drink
+          fill_in "アサヒ", with: 1
           click_on "保存"
           expect(page).to have_current_path(records_path)
           expect(page).to have_content("記録しました")
@@ -34,7 +34,9 @@ RSpec.describe "Records", type: :system do
         end
 
         it "登録が失敗する" do
-          fill_in drink.name, with: 0
+          category
+          drink
+          fill_in "アサヒ", with: 0
           click_on "保存"
           expect(current_path).to eq new_record_path
         end

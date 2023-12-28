@@ -11,7 +11,9 @@ RSpec.describe "UserSessions", type: :system do
         click_button "ログイン"
         expect(page).to have_current_path(records_path)
         expect(page).to have_content "ログイン成功です"
-        expect(page).to have_link("ログアウト")
+        expect(page).to have_link("飲酒量記録")
+        expect(page).to have_link("データ")
+        expect(page).to have_link("ランキング")
       end
     end
 
@@ -31,6 +33,7 @@ RSpec.describe "UserSessions", type: :system do
     context "ログアウトボタンクリック" do
       it "ログアウト成功" do
         login(user)
+        find(".nav-item.dropdown").click
         click_on "ログアウト"
         expect(page).to have_current_path(root_path)
         expect(page).to have_content("ログアウトしました")

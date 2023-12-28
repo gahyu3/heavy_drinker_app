@@ -4,6 +4,7 @@ RSpec.describe "Profiles", type: :system do
   let(:user) { create(:user) }
   before do
     login(user)
+    find(".nav-item.dropdown").click
     click_on "アカウント設定"
   end
   context "プロフィール編集" do

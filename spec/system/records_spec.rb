@@ -11,12 +11,12 @@ RSpec.describe "Records", type: :system do
   end
 
   describe "ログイン後" do
+    let(:category) { create(:category, name: "ビール") }
+    let(:drink) { create(:drink, name: "アサヒ", degree: 5, volume: 500, user: user, category: category) }
     before do
       login(user)
     end
 
-    let(:category) { create(:category, name: "ビール") }
-    let(:drink) { create(:drink, name: "アサヒ", degree: 5, volume: 500, user: user, category: category) }
     
     describe "飲酒記録登録" do
       context "記録の登録" do
@@ -45,7 +45,6 @@ RSpec.describe "Records", type: :system do
     end
     
     it "カレンダーが表示されている" do
-      login(user)
       expect(page).to have_current_path(records_path)
       expect(page).to have_css(".simple-calendar")
     end

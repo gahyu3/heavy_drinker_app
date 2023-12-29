@@ -46,7 +46,14 @@ class RecordsController < ApplicationController
     @day_date = session[:selected_date]
 
     @record = current_user.records.where(date: @day_date)
+  end
 
+  def record_destroy
+    @record = current_user.records.where(date: params[:day_date])
+    if @record.exists?
+      @record.destroy_all
+      redirect_to records_path, success: "削除しました"
+    end
   end
 
 

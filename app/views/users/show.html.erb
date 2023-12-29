@@ -1,16 +1,27 @@
 <%=  line_chart  @chart_data, round: 2, suffix: "g",library: { scales: { x: { type: 'time', time: { displayFormats: { day: 'yyyy/mm/dd' } } } } } %>
 
 <div>
-  今月の純アルコール量<%= @tortal_alcohol%>g
+  <% @tortal_alcohol.each do |tortal_alcohol| %>
+  今月の純アルコール量<%= tortal_alcohol.total_quantity.to_i %>g
+  <% end %>
 
 </div>
 
 
 <div>
-  <% @category_totals.each do |name,amount| %>
-  <tr>
-    <td><%= "#{name}" %></td>
-    <td><%= "#{amount}" %></td>
-  </tr>
+  <% @category_totals.each do |total| %>
+  <table>
+    <tr>
+      <td><%= total.name %></td>
+      <td><%= total.total_quantity.to_i %>g</td>
+      <% if total.name == "ビール" %>
+        <% resurt = total.total_quantity / 14.to_f %>
+        <td>350ml缶(350ml アルコール度数: 5%) : <%= number_with_precision(resurt, precision: 1) %>杯分</td>
+      <% elsif total.name == "ワイン" %>
+        <% resurt = total.total_quantity / 12.to_f %>
+        <td>グラス(120ml アルコール度数: 12%) : <%= number_with_precision(resurt, precision: 1) %>杯分</td>
+      <% end %>
+    </tr>
+  </table>
   <% end %>
 </div>

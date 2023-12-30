@@ -1,5 +1,4 @@
 <% drinks.each do |drink| %>
-  <% if drink.user_id == current_user.id %>
     <tr data-controller="button">
         <td><%= f.hidden_field 'record[][date]', value: day_date %></td>
         <td><%= f.hidden_field 'record[][drink_id]', value: drink.id %></td>
@@ -9,7 +8,11 @@
         <td><%= f.number_field 'record[][quantity]', data: {button_target: 'output'},id: "drink_#{drink.id}", value: records.find_by(drink_id: drink.id, date: day_date)&.quantity || 0, min: 0, class: "hoge" %></td>
         <td><button type="button" data-action="click->button#plus" class="btn btn-outline-success rounded-circle p-0" style="width:2rem;height:2rem;">＋</button></td>
         <td><button type="button" data-action="click->button#minus" class="btn btn-outline-danger rounded-circle p-0" style="width:2rem;height:2rem;">-</button></td>
+        <td>
+          <%= link_to drink_destroy_path(drink) , data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } do %>
+            <button type="button" class="btn-close"></button>
+          <% end %>
+        </td>
     </tr>
-  <% end %>
 <% end %>
 </div>

@@ -15,7 +15,7 @@ class RecordsController < ApplicationController
 
     if params[:category_id]
       category = Category.find(params[:category_id]) 
-      @drinks = category.drinks
+      @drinks = current_user.drinks.where(drinks: {category_id: category})
     else
       @drinks = current_user.drinks.where(drinks: {category_id: 1})
     end
@@ -53,6 +53,14 @@ class RecordsController < ApplicationController
     if @record.exists?
       @record.destroy_all
       redirect_to records_path, success: "削除しました"
+    end
+  end
+
+  def drink_destroy
+    drink = Drink.find(params[:id])
+    
+    if drink.destroy!
+      redirect_to new_record_path, success: "削除しました"
     end
   end
 

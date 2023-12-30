@@ -1,7 +1,7 @@
 <div class="container-fluid custom-height">
   <h1><%= @day_date %></h1>
-  <%= link_to destroy_path(@day_date), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } do %>
-  <i class="fa-solid fa-xmark"></i>
+  <%= link_to record_destroy_path(@day_date), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } do %>
+  <button type="button" class="btn-close"></button>
   <% end %>
   <div class="row">
     <% @category.each do |category|%>

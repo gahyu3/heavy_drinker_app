@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
-  delete ':day_date', to: 'records#record_destroy', as: :destroy
+  delete 'records/:day_date', to: 'records#record_destroy', as: :record_destroy
+  delete 'drinks/:id', to: 'records#drink_destroy', as: :drink_destroy
   
   resources :users, only: %i[new create show]
   resources :records, only: %i[index new create]

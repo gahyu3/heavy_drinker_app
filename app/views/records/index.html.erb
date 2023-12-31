@@ -1,3 +1,4 @@
+<% content_for(:title, t('.title')) %>
 <%= month_calendar do |date| %>
   <% if current_user.records.exists?(date: date) %>
       <%= link_to date.day, new_record_path(selected_date: date), class: "day_#{date}"  %>

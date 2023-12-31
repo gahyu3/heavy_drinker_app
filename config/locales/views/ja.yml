@@ -23,20 +23,33 @@ ja:
   users:
     new:
       title: '新規登録'
+    show:
+      title: 'データ'
   user_sessions:
     new:
       title: 'ログイン'
       password_forget: 'パスワードをお忘れの方はこちら'
-  records: 
+  records:
+    index:
+      title: 'カレンダー'
     new:
+      title: '飲酒登録'
       add_alcohol: 'お酒を追加する'
+  drinks:
+    new:
+      title: 'お酒登録'
+  ranks:
+    index:
+      title: 'ランキング'
   profiles:
     edit:
       title: 'アカウント設定'
       password_reset: 'パスワード再設定'
-  ranks:
-    index:
-      title: 'ランキング'
+  notification_settings:
+    edit:
+      title: '通知設定'
   password_resets:
     edit:
       title: 'パスワードリセット'
+    new:
+      title: 'パッスワードリセット'

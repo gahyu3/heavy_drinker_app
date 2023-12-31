@@ -1,3 +1,4 @@
+<% content_for(:title, t('.title')) %>
 <%=  line_chart  @chart_data, round: 2, suffix: "g",library: { scales: { x: { type: 'time', time: { displayFormats: { day: 'yyyy/mm/dd' } } } } } %>
 
 <div>

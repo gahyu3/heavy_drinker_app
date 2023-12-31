@@ -16,3 +16,48 @@ Category.create(
 Category.create(
   name: "カクテル"
 )
+
+Category.create(
+  name: "日本酒"
+)
+
+Category.create(
+  name: "焼酎"
+)
+
+Category.create(
+  name: "ウイスキー"
+)
+
+Category.create(
+  name: "ハイボール"
+)
+
+Category.create(
+  name: "酎ハイ"
+)
+
+Category.create(
+  name: "サワー"
+)
+
+Category.create(
+  name: "ジン"
+)
+
+Category.create(
+  name: "ウォッカ"
+)
+
+
+Category.create(
+  name: "果実酒"
+)
+
+Category.create(
+  name: "その他"
+)
+
+
+
+

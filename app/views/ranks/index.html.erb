@@ -1,25 +1,33 @@
 <% content_for(:title, t('.title')) %>
-<div class="container-fluid custom-height">
-  <h1><%= t('.title') %></h1>
-  <div>
-    <%= "#{@ranks_time[0]}" "~" "#{@ranks_time[1]}"%>
-  </div>
-    <div class="row">
-      <%= form_with(url: { controller: 'ranks', action: 'index' }, method: 'get', local: false) do |f| %>
-        <%= f.radio_button :period, 'month', checked: params[:period] == 'month', id: 'month-radio' %>
-        <%= f.label 'month-radio','月間' %>
-        <%= f.radio_button :period, 'week', checked: params[:period] == 'week', id: 'week-radio' %>
-        <%= f.label 'week-radio','週間' %>
-        <%= f.radio_button :period, 'day', checked: params[:period] == 'day', id: 'day-radio' %>
-        <%= f.label 'day-radio','日間' %>
-        <%= f.submit t('defaults.indicate'), class: 'btn btn-primary' %>
-      <% end %>
+<div class="container-fluid">
+  <div class="rank_field row">
+    <h1 class="text-center"><%= t('.title') %></h1>
+    <div class="rank_list col-6 mx-auto">
+      <%= "#{@ranks_time[0].strftime("%Y/%m/%d")}" "~" "#{@ranks_time[1].strftime("%Y/%m/%d")}"%>
+      <div>
+        <%= form_with(url: { controller: 'ranks', action: 'index' }, method: 'get', local: false) do |f| %>
+          <%= f.radio_button :period, 'month', checked: params[:period] == 'month' || params[:period].nil?, id: 'month-radio' %>
+          <%= f.label 'month-radio','月間' %>
+          <%= f.radio_button :period, 'week', checked: params[:period] == 'week', id: 'week-radio' %>
+          <%= f.label 'week-radio','週間' %>
+          <%= f.radio_button :period, 'day', checked: params[:period] == 'day', id: 'day-radio' %>
+          <%= f.label 'day-radio','日間' %>
+          <%= f.submit t('defaults.indicate'), class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+      <table class="table align-middle mt-5">
+        <tbody>
+          <%= render "ranks/ranks", ranks: @ranks %>
+        </tbody>
+      </table>
+      <div class="text-center mb-5 mt-5" style="font-size: 40px">:</div>
+      <table class="table align-middle">
+        <tbody>
+          <%= render "ranks/current_ranks", ranks: @ranks %>
+        </tbody>
+      </table>
     </div>
-    <table>
-      <tbody>
-        <%= render "ranks/ranks", ranks: @ranks %>
-      </tbody>
-    </table>
+  </div>
 
     
 

@@ -1,27 +1,30 @@
 <% content_for(:title, t('.title')) %>
-<div class="container-fluid d-flex align-items-center py-4 bg-body-tertiary">
-  <div class="form-signin w-100 m-auto">
-    <%= form_with model: @user, local: true, class: 'text-center' do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <h1 class="h3 mb-3 fw-normal"><%= t('.title') %></h1>
-      <div class="form-floating">
-        <%= f.text_field :name, class: 'form-control'%>
-        <%= f.label :name %>
-      </div>
-      <div class="form-floating">
-        <%= f.email_field :email, class: 'form-control'%>
-        <%= f.label :email %>
-      </div>
-      <div class="form-floating">
-        <%= f.password_field :password, class: 'form-control' %>
-        <%= f.label :password %>
-      </div>
-        <div class="form-floating">
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-        <%= f.label :password_confirmation %>
-      </div>
-      <%= f.submit t('defaults.register'), class: 'btn btn-primary w-100 py-2' %>
-      <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
-    <% end %>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="form-signin col-7">
+      <%= form_with model: @user, local: true do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <h1 class="h3 mb-3 text-center mt-5"><%= t('.title') %></h1>
+        <div>
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control'%>
+        </div>
+        <div>
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control'%>
+        </div>
+        <div>
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+          <div>
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+        <div class="d-flex justify-content-center">
+          <%= f.submit t('defaults.register'), class: 'btn btn-primary mt-4' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

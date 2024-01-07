@@ -1,12 +1,12 @@
 <% content_for(:title, t('.title')) %>
-<div class="container-fluid custom-height">
-  <h1><%= @day_date %></h1>
-  <%= link_to record_destroy_path(@day_date), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } do %>
+<div class="container-fluid">
+  <h1 class="text-center"><%= @day_date.strftime("%Y/%m/%d") %></h1>
+  <%= link_to record_destroy_path(@day_date), data: { turbo_method: :delete, turbo_confirm: "記録を削除しますか？" } do %>
   <button type="button" class="btn-close"></button>
   <% end %>
   <div class="row">
     <% @category.each do |category|%>
-      <div data-controller="count" class="col">
+      <div data-controller="count" class="col-2 text-center">
           <%= link_to new_record_path(category_id: category.id), class: "btn #{category.id == @selected_category_id.to_i ? 'btn-light active' : 'btn-light'}" do %>
             <%= image_tag "#{category.name}.png", size: "50x50", alt: category.name %>
           <% end %>
@@ -20,8 +20,11 @@
             <%= render partial: 'records/list', locals: { drinks: @drinks, records: @records, day_date: @day_date, f: f } %>
         </tbody>
       </table>
+      <div class="text-center">
         <%= link_to t('.add_alcohol'), new_drink_path(selected_date: @day_date, selected_category: @selected_category_id) , class: "btn btn-primary" %>
-        <p>純アルコール量：</p>
-        <%= f.submit t('defaults.save'), class: 'btn btn-primary py-2' %>
+      </div>
+      <div class="text-center mt-5">
+        <%= f.submit t('defaults.save'), class: 'btn btn-primary' %>
+      </div>
     <% end %>
 </div>

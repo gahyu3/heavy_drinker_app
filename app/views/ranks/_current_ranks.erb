@@ -1,0 +1,11 @@
+<% ranks.each do |rank| %>
+  <%if rank.id == current_user.id && rank.user_rank > 10 %>
+  <tr class="<%= "table-success" if rank.id == current_user.id %>">
+    <td><%= rank.user_rank %>位</td>
+    <td><%= image_tag rank.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
+    <td><%= rank.name %></td>
+    <td><%= rank.total_quantity.round %>g</td>
+  </tr>
+  <% end %>
+<% end %>
+

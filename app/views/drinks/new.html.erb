@@ -1,26 +1,38 @@
 <% content_for(:title, t('.title')) %>
-<div class="container-fluid custom-height">
-  <div class="row">
-    <div class="text-center">
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-6">
       <%= form_with model: @drink, local: true do |f| %>
-      <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: "from-control" %>
-      </div>
-      <div class="from-group">
-        <%= f.label :volume %>
-        <%= f.text_field :volume, pattern: "[0-9]*", title: "数字のみ入力してください", class: "from-control" %>ml
-      </div>
-      <div class="from-group">
-        <%= f.label :degree %>
-        <%= f.text_field :degree, pattern: "[0-9]*", title: "数字のみ入力してください", class: "from-control" %>%
-      </div>
-      <div class="from-group">
-        <%= f.label :category_id %>
+      <div class="row mt-5">
+        <%= f.label :category_id, class: "col-sm-3 col-form-label"%>
         <%= f.hidden_field :category_id, value: @selected_category_id %>
-        <%= Category.find(@selected_category_id).name %>
+        <div class="col-5 ms-5">
+          <%= Category.find(@selected_category_id).name %>
+        </div>
       </div>
-        <%= f.submit t('defaults.add'), class: 'btn btn-primary py-2' %>
+      <div class="row">
+        <%= f.label :name, class: "col-sm-2 col-form-label" %>
+        <div class="col-5 ms-5">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <%= f.label :volume, class: "col-sm-2 col-form-label" %>
+        <div class="col-3 ms-5">
+          <%= f.text_field :volume, pattern: "[0-9]*", title: "数字のみ入力してください", class: "form-control" %>
+        </div>
+        <div class="col-1 d-flex align-items-center">ml</div>
+      </div>
+      <div class="row mt-3">
+        <%= f.label :degree, class: "col-sm-4 col-form-label" %>
+        <div class="col-3">
+          <%= f.text_field :degree, pattern: "[0-9]*", title: "数字のみ入力してください", class: "form-control" %>
+        </div>
+        <div class="col-1 d-flex align-items-center">%</div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <%= f.submit t('defaults.add'), class: 'btn btn-primary mt-5' %>
+      </div>
       <% end %>
     </div>
   </div>

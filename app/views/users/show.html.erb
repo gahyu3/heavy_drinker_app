@@ -1,27 +1,31 @@
 <% content_for(:title, t('.title')) %>
-<%=  line_chart  @chart_data, round: 2, suffix: "g",library: { scales: { x: { type: 'time', time: { displayFormats: { day: 'yyyy/mm/dd' } } } } } %>
+<div class="container-fluid">
+  <%=  line_chart  @chart_data, round: 2, suffix: "g",library: { scales: { x: { type: 'time', time: { displayFormats: { day: 'yyyy/mm/dd' } } } } } %>
 
-<div>
-  <% @tortal_alcohol.each do |tortal_alcohol| %>
-  今月の純アルコール量<%= tortal_alcohol.total_quantity.to_i %>g
-  <% end %>
-</div>
+  <div class="total_alcohol text-center mt-5">
+    <% @tortal_alcohol.each do |tortal_alcohol| %>
+    今月の純アルコール量<%= tortal_alcohol.total_quantity.to_i %>g
+    <% end %>
+  </div>
 
-
-<div>
-  <% @category_totals.each do |total| %>
-  <table>
-    <tr>
-      <td><%= total.name %></td>
-      <td><%= total.total_quantity.to_i %>g</td>
-      <% if total.name == "ビール" %>
-        <% resurt = total.total_quantity / 14.to_f %>
-        <td>350ml缶(350ml アルコール度数: 5%) : <%= number_with_precision(resurt, precision: 1) %>杯分</td>
-      <% elsif total.name == "ワイン" %>
-        <% resurt = total.total_quantity / 12.to_f %>
-        <td>グラス(120ml アルコール度数: 12%) : <%= number_with_precision(resurt, precision: 1) %>杯分</td>
+  <div class="category_total">
+    <h5 class="text-center mt-5">カテゴリー別</h5>
+    <div class="d-flex justify-content-center">
+    <ul class="list-unstyled p-2 border border-dark border-3">
+      <% @category_totals.each do |total| %>
+        <li>
+          <%= total.name %>
+          <%= total.total_quantity.to_i %>g
+            <% if total.name == "ビール" %>
+              <% resurt = total.total_quantity / 14.to_f %><span style="font-size: 13px">
+            350ml缶(350ml アルコール度数: 5%)</span>: <%= number_with_precision(resurt, precision: 1) %>杯分
+            <% elsif total.name == "ワイン" %>
+              <% resurt = total.total_quantity / 12.to_f %><span style="font-size: 13px">
+            グラス(120ml アルコール度数: 12%)</span>: <%= number_with_precision(resurt, precision: 1) %>杯分
+            <% end %>
+        </li>
       <% end %>
-    </tr>
-  </table>
-  <% end %>
+    </ul>
+    </div>
+  </div>
 </div>

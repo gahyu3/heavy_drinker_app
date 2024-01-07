@@ -1,28 +1,28 @@
-        <% ranks.each.with_index(1) do |rank,i| %>
-          <% if i == 1 %>
-          <tr>
-            <td><i class="fa-solid fa-trophy" style="color: #f5ee19;"></i><%= i %>位</td>
+        <% ranks.limit(10).each do |rank| %>
+          <% if rank.user_rank == 1 %>
+          <tr class="<%= "table-success" if rank.id == current_user.id %>">
+            <td><i class="fa-solid fa-trophy" style="color: #f5ee19;"></i><%= rank.user_rank %>位</td>
             <td><%= image_tag rank.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
             <td><%= rank.name %></td>
             <td><%= rank.total_quantity.round %>g</td>
           </tr>
-          <% elsif i == 2 %>
-          <tr>
-            <td><i class="fa-solid fa-trophy" style="color: #d6d1d4;"></i><%= i %>位</td>
+          <% elsif rank.user_rank == 2 %>
+          <tr class="<%= "table-success" if rank.id == current_user.id %>">
+            <td><i class="fa-solid fa-trophy" style="color: #d6d1d4;"></i><%= rank.user_rank %>位</td>
             <td><%= image_tag rank.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
             <td><%= rank.name %></td>
             <td><%= rank.total_quantity.round %>g</td>
           </tr>
-          <% elsif i == 3 %>
-          <tr>
-            <td><i class="fa-solid fa-trophy" style="color: #f49c62;"></i><%= i %>位</td>
+          <% elsif rank.user_rank == 3 %>
+          <tr class="<%= "table-success" if rank.id == current_user.id %>">
+            <td><i class="fa-solid fa-trophy" style="color: #f49c62;"></i><%= rank.user_rank %>位</td>
             <td><%= image_tag rank.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
             <td><%= rank.name %></td>
             <td><%= rank.total_quantity.round %>g</td>
           </tr>
           <% else %>
-          <tr>
-            <td><%= i %>位</td>
+          <tr class="<%= "table-success" if rank.id == current_user.id %>">
+            <td><%= rank.user_rank %>位</td>
             <td><%= image_tag rank.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
             <td><%= rank.name %></td>
             <td><%= rank.total_quantity.round %>g</td>

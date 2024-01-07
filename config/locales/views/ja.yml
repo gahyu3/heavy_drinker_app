@@ -1,4 +1,8 @@
 ja:
+  simple_calendar:
+    previous: "< 先月"
+    next: "来月 >"
+    today: '本日'
   defaults:
     login: 'ログイン'
     register: '登録'
@@ -52,4 +56,4 @@ ja:
     edit:
       title: 'パスワードリセット'
     new:
-      title: 'パッスワードリセット'
+      title: 'パッスワードリセットメール送信'

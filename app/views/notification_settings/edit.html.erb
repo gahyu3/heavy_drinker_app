@@ -3,7 +3,8 @@
   <div class="row justify-content-center">
     <div class="col-7">
       <%= form_with model: @notification_setting, url: notification_setting_path, local: false do |f| %>
-        <div class="form-check form-switch">
+        <h1 class="h3 mb-3 text-center mt-5"><%= t('.title') %></h1>
+        <div class="form-check form-switch mt-5">
           <%= f.label :day, class: "form-check-label" %>
           <%= f.check_box :day, class: "form-check-input", roll: "switch", checked: @notification_setting.day? %>
         </div>

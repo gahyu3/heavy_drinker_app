@@ -29,31 +29,63 @@ ja:
       title: '新規登録'
     show:
       title: 'データ'
+    create:
+      success: '登録に成功しました'
   user_sessions:
     new:
       title: 'ログイン'
       password_forget: 'パスワードをお忘れの方はこちら'
+    create:
+      success: 'ログインしました'
+      fail: 'ログインできません'
+    destroy:
+      success: 'ログアウトしました'
+
   records:
     index:
       title: 'カレンダー'
     new:
       title: '飲酒登録'
       add_alcohol: 'お酒を追加する'
+    create:
+      success: '記録しました'
+    record_destroy:
+      success: '削除しました'
+    drink_destroy:
+      success: '削除しました'
+
   drinks:
     new:
       title: 'お酒登録'
+    create:
+      success: '追加しました'
+      fail: '値が間違っています'
+
   ranks:
     index:
       title: 'ランキング'
+
   profiles:
     edit:
       title: 'アカウント設定'
       password_reset: 'パスワード再設定'
+    update: 
+      success: '更新しました'
+      fail: '更新に失敗しました'
+
   notification_settings:
     edit:
       title: '通知設定'
+    update:
+      success: '更新しました'
+
   password_resets:
     edit:
       title: 'パスワードリセット'
     new:
       title: 'パッスワードリセットメール送信'
+    create:
+      success: 'メールを送信しました'
+    update:
+      success: 'パスワードを変更しました'
+      fail: 'パスワード変更できませんでした'

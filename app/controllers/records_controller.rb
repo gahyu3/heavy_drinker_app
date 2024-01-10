@@ -35,7 +35,7 @@ class RecordsController < ApplicationController
         current_user.records.create(date: record_data["date"], drink_id: record_data["drink_id"], quantity: record_data["quantity"].to_i)
       end
     end
-    redirect_to records_path, success: "記録しました"
+    redirect_to records_path, success: t('.success')
       
   end
   
@@ -52,7 +52,7 @@ class RecordsController < ApplicationController
     @record = current_user.records.where(date: params[:day_date])
     if @record.exists?
       @record.destroy_all
-      redirect_to records_path, success: "削除しました"
+      redirect_to records_path, success: t('.success')
     end
   end
 
@@ -60,7 +60,7 @@ class RecordsController < ApplicationController
     drink = Drink.find(params[:id])
     
     if drink.destroy!
-      redirect_to new_record_path, success: "削除しました"
+      redirect_to new_record_path, success: t('.success')
     end
   end
 

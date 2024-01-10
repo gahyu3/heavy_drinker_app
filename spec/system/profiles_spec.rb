@@ -21,7 +21,7 @@ RSpec.describe "Profiles", type: :system do
       fill_in "メールアドレス", with: "example@example.com"
       click_on "更新"
       expect(page).to have_current_path(edit_profile_path)
-      expect(page).to have_content("更新失敗")
+      expect(page).to have_content("更新に失敗しました")
       expect(page).to have_content("ユーザーネームを入力してください")
     end
   end

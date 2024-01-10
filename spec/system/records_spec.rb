@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Records", type: :system do
   let(:user) { create(:user) }
+  let(:category) { create(:category, name: "ビール") }
+  let(:drink) { create(:drink, name: "アサヒ", degree: 5, volume: 500, user: user, category: category) }
   describe "ログイン前" do
     it "飲酒量記録ページにアクセスが失敗する" do
       visit records_path
@@ -11,8 +13,6 @@ RSpec.describe "Records", type: :system do
   end
 
   describe "ログイン後" do
-    let(:category) { create(:category, name: "ビール") }
-    let(:drink) { create(:drink, name: "アサヒ", degree: 5, volume: 500, user: user, category: category) }
     before do
       login(user)
     end

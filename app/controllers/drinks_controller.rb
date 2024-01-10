@@ -11,9 +11,9 @@ class DrinksController < ApplicationController
     @drink = current_user.drinks.build(drink_params)
     
     if @drink.save
-      redirect_to new_record_path(selected_date: day_date), success: "追加しました"
+      redirect_to new_record_path(selected_date: day_date), success:  t('.success')
     else
-      flash.now[:danger] = "値が間違っています"
+      flash.now[:danger] =  t('.fail')
       render :new, status: :unprocessable_entity
     end
     

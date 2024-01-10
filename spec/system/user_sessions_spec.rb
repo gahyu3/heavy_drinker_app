@@ -10,7 +10,7 @@ RSpec.describe "UserSessions", type: :system do
         fill_in "パスワード", with: "password"
         click_button "ログイン"
         expect(page).to have_current_path(records_path)
-        expect(page).to have_content "ログイン成功です"
+        expect(page).to have_content "ログインしました"
         expect(page).to have_link("飲酒量記録")
         expect(page).to have_link("データ")
         expect(page).to have_link("ランキング")

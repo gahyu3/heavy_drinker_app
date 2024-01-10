@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       NotificationSetting.create(user_id: @user.id)
-      redirect_to login_path, success: "登録に成功しました"
+      redirect_to login_path, success: t('.success')
     else
       render :new, status: :unprocessable_entity
     end

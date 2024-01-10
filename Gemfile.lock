@@ -196,6 +196,8 @@ GEM
       letter_opener (~> 1.7)
       railties (>= 5.2)
       rexml
+    libv8-node (18.16.0.0-x86_64-darwin)
+    libv8-node (18.16.0.0-x86_64-linux)
     loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -209,6 +211,8 @@ GEM
     method_source (1.0.0)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
+    mini_racer (0.8.0)
+      libv8-node (~> 18.16.0.0)
     minitest (5.20.0)
     msgpack (1.7.2)
     multi_xml (0.6.0)
@@ -406,6 +410,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   letter_opener_web
+  mini_racer
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)

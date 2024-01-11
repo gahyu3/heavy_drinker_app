@@ -1,10 +1,21 @@
 <% content_for(:title, t('.title')) %>
-<div class="top-wrapper">
-  <div class="container custom-height">
+  <div class="container-fluid">
+    <div class="row h-100">
+      <div class="col-7 position-relative">
+        <div class="position-absolute top-50 start-0 translate-middle-y">
+          <h1 class="mb-5">酒飲みチェッカー へようこそ！</h1>
+          <h4>お酒好きのための、新しい交流の場がここにあります！このアプリでは、ユーザーが飲んだお酒の量を記録し、日々のランキングで競い合うことができるサービスです。</h4>
+          <h4>友達や他のユーザーと交流し、誰が一番お酒を楽しんでいるか競い合いましょう！</h4>
+        </div>
+      </div>
+      <div class="top_img col-5 position-relative">
+        <p class="position-absolute bottom-0 end-0" style="font-size: 9px;"><a href="https://jp.freepik.com/free-vector/happy-friends-celebrating-event-together_9649916.htm#query=drink%20party&position=4&from_view=search&track=ais&uuid=0aee8c5b-92b0-4166-aefb-e7e3807cf742">著作者：pch.vector</a>／出典：Freepik</p>
+      </div>
+
+    </div>
 
   </div>
   <div class="text-center py-3">
-    <%= link_to "はじめる", "#", class: "btn btn-primary"%>
+    <%= link_to "はじめる", records_path, class: "btn btn-primary"%>
   </div>
-</div>
   

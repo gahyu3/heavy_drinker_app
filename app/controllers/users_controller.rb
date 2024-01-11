@@ -8,8 +8,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      auto_login(@user)
+      @user.create_default_drinks
       NotificationSetting.create(user_id: @user.id)
-      redirect_to login_path, success: t('.success')
+      redirect_to records_path, success: t('.success')
     else
       render :new, status: :unprocessable_entity
     end

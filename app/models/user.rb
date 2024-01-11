@@ -40,4 +40,39 @@ class User < ApplicationRecord
     .where(records: { date: Date.yesterday.beginning_of_month + 9.hours..Date.yesterday.end_of_month + 1 + 9.hours })
   end
 
+
+  def create_default_drinks
+    drinks.create([
+      # ビール
+      { name: '350ml缶', volume: 350, degree: 5, category_id: 1 },
+      { name: '500ml缶', volume: 500, degree: 5, category_id: 1 },
+      { name: '中ジョッキ', volume: 400, degree: 5, category_id: 1 },
+      # ワイン
+      { name: 'グラス', volume: 120, degree: 12, category_id: 2 },
+      { name: 'ボトル', volume: 720, degree: 12, category_id: 2 },
+      # 日本酒
+      { name: '一合', volume: 180 , degree: 15, category_id: 3 },
+      # 焼酎
+      { name: 'ロック', volume: 80, degree: 25, category_id: 4 },
+      { name: '水割り', volume: 180, degree: 15, category_id: 4 },
+      # ウイスキー
+      { name: 'ロック', volume: 30, degree: 43, category_id: 5 },
+      # ハイボール
+      { name: '350ml缶', volume: 350, degree: 7, category_id: 6 },
+      { name: '500ml缶', volume: 500, degree: 7, category_id: 6 },
+      { name: '中ジョッキ', volume: 400, degree: 7, category_id: 6 },
+      # 酎ハイ
+      { name: '350ml缶', volume: 350, degree: 5, category_id: 7 },
+      { name: '500ml缶', volume: 500, degree: 5, category_id: 7 },
+      # サワー
+      { name: 'グラス', volume: 300, degree: 5, category_id: 8 },
+      # ジン
+      { name: 'ロック', volume: 30, degree: 40, category_id: 9 },
+      # ウォッカ
+      { name: 'ロック', volume: 30, degree: 40, category_id: 10 },
+      # 果実酒
+      { name: 'グラス', volume: 120, degree: 8, category_id: 11 },
+    ])
+  end
+
 end

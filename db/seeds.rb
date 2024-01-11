@@ -14,10 +14,6 @@ Category.create(
 )
 
 Category.create(
-  name: "カクテル"
-)
-
-Category.create(
   name: "日本酒"
 )
 

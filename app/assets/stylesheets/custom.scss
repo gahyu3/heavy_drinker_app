@@ -13,3 +13,10 @@ body {
   flex: 1;
   width: 90%;
 }
+
+.top_img {
+  background-image: url('top_img.jpg');
+  background-size: cover; // 画像をカバーするように表示
+  background-position: center center; // 画像を中央に配置
+  background-repeat: no-repeat; // 画像を繰り返し表示しない
+}

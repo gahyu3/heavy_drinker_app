@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -6,54 +8,49 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 Category.create(
-  name: "ビール"
+  name: 'ビール'
 )
 
 Category.create(
-  name: "ワイン"
+  name: 'ワイン'
 )
 
 Category.create(
-  name: "日本酒"
+  name: '日本酒'
 )
 
 Category.create(
-  name: "焼酎"
+  name: '焼酎'
 )
 
 Category.create(
-  name: "ウイスキー"
+  name: 'ウイスキー'
 )
 
 Category.create(
-  name: "ハイボール"
+  name: 'ハイボール'
 )
 
 Category.create(
-  name: "酎ハイ"
+  name: '酎ハイ'
 )
 
 Category.create(
-  name: "サワー"
+  name: 'サワー'
 )
 
 Category.create(
-  name: "ジン"
+  name: 'ジン'
 )
 
 Category.create(
-  name: "ウォッカ"
-)
-
-
-Category.create(
-  name: "果実酒"
+  name: 'ウォッカ'
 )
 
 Category.create(
-  name: "その他"
+  name: '果実酒'
 )
 
-
-
-
+Category.create(
+  name: 'その他'
+)

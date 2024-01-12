@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :require_login
   before_action -> { notifications if logged_in? }
@@ -6,11 +8,10 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authenticated
-    redirect_to login_path, warning: "ログインしてください"
+    redirect_to login_path, warning: 'ログインしてください'
   end
 
   def notifications
     @user_rank = current_user.notifications.order(created_at: :desc).limit(10).reverse
   end
-
 end

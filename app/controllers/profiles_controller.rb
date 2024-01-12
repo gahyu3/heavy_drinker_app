@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProfilesController < ApplicationController
   def edit
     @user = User.find(current_user.id)
@@ -11,12 +13,11 @@ class ProfilesController < ApplicationController
       flash.now[:danger] = t('.fail')
       render :edit, status: :unprocessable_entity
     end
-
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :avatar, :avatar_cache )
+    params.require(:user).permit(:name, :email, :avatar, :avatar_cache)
   end
 end

@@ -8,24 +8,12 @@
     <% end %>
   </div>
 
-  <div class="category_total">
-    <h5 class="text-center mt-5">カテゴリー別</h5>
-    <div class="d-flex justify-content-center">
-    <ul class="list-unstyled p-2 border border-dark border-3">
-      <% @category_totals.each do |total| %>
-        <li>
-          <%= total.name %>
-          <%= total.total_quantity.to_i %>g
-            <% if total.name == "ビール" %>
-              <% resurt = total.total_quantity / 14.to_f %><span style="font-size: 13px">
-            350ml缶(350ml アルコール度数: 5%)</span>: <%= number_with_precision(resurt, precision: 1) %>杯分
-            <% elsif total.name == "ワイン" %>
-              <% resurt = total.total_quantity / 12.to_f %><span style="font-size: 13px">
-            グラス(120ml アルコール度数: 12%)</span>: <%= number_with_precision(resurt, precision: 1) %>杯分
-            <% end %>
-        </li>
-      <% end %>
-    </ul>
+  <% if @category_totals.present? %>
+    <div class="category_total">
+      <h5 class="text-center mt-5">カテゴリー別</h5>
+      <div class="d-flex justify-content-center">
+        <%= render "users/category", category_totals: @category_totals %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

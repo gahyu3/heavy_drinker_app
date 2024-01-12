@@ -18,14 +18,28 @@ class UsersController < ApplicationController
   end
 
   def show
-    records = current_user.records.where(date: Date.today.beginning_of_month..Date.today.end_of_month)
-    @chart_data = {}
-    
-    records.each do |record|
-      date_key = record.date.strftime('%Y/%m/%d')
-      @chart_data[date_key] ||= 0
-      @chart_data[date_key] += (record.quantity * record.drink.volume * record.drink.degree / 100 * 0.8)
+
+    start_date = Date.today.beginning_of_month
+    end_date = Date.today.end_of_month
+    date_range = (start_date..end_date).to_a
+
+    drink_records = User
+      .joins(records: :drink)
+      .select('records.date, users.id, users.name, round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity')
+      .group("users.id, records.date")
+      .where(records: { date: start_date..end_date, user_id: current_user.id })
+
+    daily_data_hash = Hash.new(0)
+
+    drink_records.each do |record|
+      daily_data_hash[record.date.strftime('%-m/%-d')] = record.total_quantity
     end
+
+    @daily_data = date_range.map { |date| [date.strftime('%-m/%-d'), daily_data_hash[date.strftime('%-m/%-d')]] }
+
+    @chart_data = @daily_data
+    
+  
 
     @tortal_alcohol = User
     .joins(records: :drink)

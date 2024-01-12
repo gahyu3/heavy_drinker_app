@@ -1,6 +1,6 @@
 <% content_for(:title, t('.title')) %>
 <div class="container-fluid">
-  <%=  line_chart  @chart_data, round: 2, suffix: "g",library: { scales: { x: { type: 'time', time: { displayFormats: { day: 'yyyy/mm/dd' } } } } } %>
+  <%=  column_chart  @chart_data, round: 2, suffix: "g" %>
 
   <div class="total_alcohol text-center mt-5">
     <% @tortal_alcohol.each do |tortal_alcohol| %>

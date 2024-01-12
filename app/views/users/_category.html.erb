@@ -1,0 +1,24 @@
+    <ul class="list-unstyled p-2 border border-dark border-3">
+      <% category_totals.each do |total| %>
+        <li>
+          <%= total.name %>
+          <%= total.total_quantity.to_i %>g
+          <% resurt, label = case total.name
+              when "ビール" then [total.total_quantity / 16.to_f, "中ジョッキ(400ml アルコール度数: 5%)"]
+              when "ワイン" then [total.total_quantity / 12.to_f, "グラス(120ml アルコール度数: 12%)"]
+              when "日本酒" then [total.total_quantity / 22.to_f, "一合(180ml アルコール度数: 15%)"]
+              when "焼酎" then [total.total_quantity / 22.to_f, "水割り(180ml アルコール度数: 15%)"]
+              when "ウイスキー" then [total.total_quantity / 10.to_f, "ロック(30ml アルコール度数: 43%)"]
+              when "ハイボール" then [total.total_quantity / 22.to_f, "中ジョッキ(400ml アルコール度数: 7%)"]
+              when "酎ハイ" then [total.total_quantity / 14.to_f, "350ml缶(350ml アルコール度数: 5%)"]
+              when "サワー" then [total.total_quantity / 12.to_f, "グラス(300ml アルコール度数: 5%)"]
+              when "ジン" then [total.total_quantity / 10.to_f, "ロック(30ml アルコール度数: 40%)"]
+              when "ウォッカ" then [total.total_quantity / 10.to_f, "ロック(30ml アルコール度数: 40%)"]
+              when "果実酒" then [total.total_quantity / 8.to_f, "グラス(120ml アルコール度数: 8%)"]
+              when "その他" then [total.total_quantity / 16.to_f, "ビール中ジョッキ(400ml アルコール度数: 5%)"]
+              else [0, ""]
+            end %>
+          <span style="font-size: 13px"><%= label %></span>: <%= number_with_precision(resurt, precision: 1) %>杯分
+        </li>
+      <% end %>
+    </ul>

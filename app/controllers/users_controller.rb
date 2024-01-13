@@ -28,7 +28,8 @@ class UsersController < ApplicationController
                     .joins(records: :drink)
                     .select('records.date, users.id, users.name, round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity')
                     .group('users.id, records.date')
-                    .where(records: { date: start_date..end_date, user_id: current_user.id })
+                    .where(records: { date: Date.today.beginning_of_month..Date.today.end_of_month,
+                                      user_id: current_user.id })
 
     daily_data_hash = Hash.new(0)
 

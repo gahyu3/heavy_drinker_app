@@ -15,7 +15,6 @@ RSpec.describe 'Dates', type: :system do
     login(user)
   end
 
-
   describe 'データ画面' do
     it '月の純アルコール量が表示される' do
       category_beer

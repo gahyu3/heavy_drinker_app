@@ -60,11 +60,12 @@ end
 group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
   gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 group :development do
+  gem 'bullet'
   gem 'web-console'
 
   gem 'letter_opener_web'

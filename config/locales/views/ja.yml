@@ -23,6 +23,9 @@ ja:
       notification_settings: '通知設定'
     notification:
       title: 'お知らせ'
+    footer:
+      privacy: 'プライバシーポリシー'
+      terms_of_service: '利用規約'
 
   users:
     new:

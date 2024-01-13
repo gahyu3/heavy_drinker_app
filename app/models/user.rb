@@ -18,8 +18,16 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_one :notification_setting, dependent: :destroy
 
+  # users_controller
+
   def self.rank_day_user
-    select('users.id, users.name, notification_settings.day, notification_settings.week, notification_settings.month, round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity', 'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+    select('users.id,
+    users.name,
+    notification_settings.day,
+    notification_settings.week,
+    notification_settings.month,
+    round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+           'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
       .joins(records: :drink)
       .joins(:notification_setting)
       .group('users.id', 'notification_settings.id')
@@ -27,7 +35,13 @@ class User < ApplicationRecord
   end
 
   def self.rank_week_user
-    select('users.id, users.name, notification_settings.day, notification_settings.week, notification_settings.month, round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity', 'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+    select('users.id,
+    users.name,
+    notification_settings.day,
+    notification_settings.week,
+    notification_settings.month,
+    round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+           'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
       .joins(records: :drink)
       .joins(:notification_setting)
       .group('users.id', 'notification_settings.id')
@@ -35,7 +49,12 @@ class User < ApplicationRecord
   end
 
   def self.rank_month_user
-    select('users.id, users.name, notification_settings.day, notification_settings.week, notification_settings.month, round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity', 'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+    select('users.id,
+    users.name,
+    notification_settings.day,
+    notification_settings.week,
+    notification_settings.month,
+    round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity', 'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
       .joins(records: :drink)
       .joins(:notification_setting)
       .group('users.id', 'notification_settings.id')
@@ -74,5 +93,40 @@ class User < ApplicationRecord
                     # 果実酒
                     { name: 'グラス', volume: 120, degree: 8, category_id: 11 }
                   ])
+  end
+
+  # ranks_controller
+
+  def self.rank_for_month
+    self
+      .select('users.id,
+       users.name,
+        round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+              'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+      .joins(records: :drink)
+      .group('users.id')
+      .where(records: { date: Date.today.beginning_of_month..Date.today.end_of_month })
+  end
+
+  def self.rank_for_week
+    self
+      .select('users.id,
+       users.name,
+        round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+              'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+      .joins(records: :drink)
+      .group('users.id')
+      .where(records: { date: Date.today.beginning_of_week..Date.today.end_of_week })
+  end
+
+  def self.rank_for_day
+    self
+      .select('users.id,
+       users.name,
+        round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+              'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+      .joins(records: :drink)
+      .group('users.id')
+      .where(records: { date: Date.today.beginning_of_day..Date.today.end_of_day })
   end
 end

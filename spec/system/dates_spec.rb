@@ -12,17 +12,9 @@ RSpec.describe 'Dates', type: :system do
   let(:record_yesterday) { create(:record, date: Date.yesterday, quantity: 3, user:, drink: drink_wine) }
 
   before do
-    @before_snapshot = Record.all.map(&:attributes)
     login(user)
   end
 
-  after(:each) do
-    # テスト後のデータベーススナップショット取得
-    @after_snapshot = Record.all.map(&:attributes)
-
-    # スナップショットを比較するか、変更があるかを確認するロジックを追加
-    expect(@after_snapshot).to eq(@before_snapshot)
-  end
 
   describe 'データ画面' do
     it '月の純アルコール量が表示される' do

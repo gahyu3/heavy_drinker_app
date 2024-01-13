@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class RecordsController < ApplicationController
+  before_action :set_selected_date, only: %i[new edit]
+  before_action :set_day_date, only: %i[new edit]
+
   def index; end
 
   def new
-    session[:selected_date] = params[:selected_date] if params[:selected_date].present?
-    @day_date = Date.parse(session[:selected_date])
-
     @record = Record.new
     @records = current_user.records
     @category = Category.all
@@ -36,9 +36,6 @@ class RecordsController < ApplicationController
   end
 
   def edit
-    session[:selected_date] = params[:selected_date] if params[:selected_date].present?
-    @day_date = session[:selected_date]
-
     @record = current_user.records.where(date: @day_date)
   end
 
@@ -62,5 +59,13 @@ class RecordsController < ApplicationController
 
   def record_params
     params.require(:record).permit(record: %i[date drink_id quantity])
+  end
+
+  def set_selected_date
+    session[:selected_date] = params[:selected_date] if params[:selected_date].present?
+  end
+
+  def set_day_date
+    @day_date = Date.parse(session[:selected_date])
   end
 end

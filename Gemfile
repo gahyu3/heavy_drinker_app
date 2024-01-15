@@ -45,6 +45,10 @@ gem 'whenever', require: false
 
 gem 'mini_racer'
 
+gem 'fog-aws'
+
+gem 'dotenv-rails'
+
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'

@@ -41,9 +41,9 @@ Rails: 7.0系
 ユーザー登録・ログイン機能 socerry
 グラフ表示 chartkick
 カレンダー表示 SimpleCalendar
-通知機能 ActionCable
 
 本リリース
+通知機能 ActionCable
 ユーザーの検索機能 オートコンプリート rails-autocomplete
 
 画面編纂図

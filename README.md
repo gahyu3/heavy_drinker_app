@@ -48,6 +48,10 @@
 
 ・友人やお気に入りの人の中でのランキング機能
 
+・googleログイン
+
+・x投稿機能
+
 ### 機能の実装方針予定
 Ruby: 3.0系
 
@@ -58,6 +62,10 @@ Rails: 7.0系
 グラフ表示 chartkick
 
 カレンダー表示 SimpleCalendar
+
+cssフレームワーク　　bootstrap
+
+画像登録　carrierwave
 
 
 本リリース

@@ -49,6 +49,12 @@ gem 'fog-aws'
 
 gem 'dotenv-rails'
 
+gem 'ransack'
+
+gem 'kaminari'
+
+gem 'bootstrap5-kaminari-views'
+
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'

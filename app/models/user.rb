@@ -3,7 +3,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   mount_uploader :avatar, AvatarUploader
-
+  
+  
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
@@ -17,6 +18,8 @@ class User < ApplicationRecord
   has_many :drinks, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_one :notification_setting, dependent: :destroy
+  has_many :active_follow, class_name: "Follow", foreign_key: "follower_id"
+  has_many :passive_follow, class_name: "Follow", foreign_key: "followed_id"
 
   # users_controller
 
@@ -28,12 +31,12 @@ class User < ApplicationRecord
     notification_settings.month,
     round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
            'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
-      .joins(records: :drink)
+           .joins(records: :drink)
       .joins(:notification_setting)
       .group('users.id', 'notification_settings.id')
       .where(records: { date: Date.yesterday.beginning_of_day + 9.hours..Date.today.beginning_of_day + 9.hours })
   end
-
+  
   def self.rank_week_user
     select('users.id,
     users.name,
@@ -42,10 +45,10 @@ class User < ApplicationRecord
     notification_settings.month,
     round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
            'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
-      .joins(records: :drink)
-      .joins(:notification_setting)
-      .group('users.id', 'notification_settings.id')
-      .where(records: { date: Date.yesterday.beginning_of_week + 9.hours..Date.yesterday.end_of_week + 1 + 9.hours })
+           .joins(records: :drink)
+           .joins(:notification_setting)
+           .group('users.id', 'notification_settings.id')
+           .where(records: { date: Date.yesterday.beginning_of_week + 9.hours..Date.yesterday.end_of_week + 1 + 9.hours })
   end
 
   def self.rank_month_user
@@ -55,13 +58,13 @@ class User < ApplicationRecord
     notification_settings.week,
     notification_settings.month,
     round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity', 'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
-      .joins(records: :drink)
+    .joins(records: :drink)
       .joins(:notification_setting)
       .group('users.id', 'notification_settings.id')
       .where(records: { date: Date.yesterday.beginning_of_month + 9.hours..Date.yesterday.end_of_month + 1 + 9.hours })
-  end
-
-  def create_default_drinks
+    end
+    
+    def create_default_drinks
     drinks.create([
                     # ビール
                     { name: '350ml缶', volume: 350, degree: 5, category_id: 1 },
@@ -95,38 +98,43 @@ class User < ApplicationRecord
                   ])
   end
 
-  # ranks_controller
+  def self.ransackable_attributes(auth_object = nil)
+    ["access_count_to_reset_password_page", "avatar", "created_at", "crypted_password", "email", "id", "name", "reset_password_email_sent_at", "reset_password_token", "reset_password_token_expires_at", "salt", "updated_at"]
+  end
 
+  
+  # ranks_controller
+  
   def self.rank_for_month
     self
       .select('users.id,
-       users.name,
-        round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+      users.name,
+      round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
               'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
-      .joins(records: :drink)
+              .joins(records: :drink)
       .group('users.id')
       .where(records: { date: Date.today.beginning_of_month..Date.today.end_of_month })
-  end
+    end
 
-  def self.rank_for_week
-    self
+    def self.rank_for_week
+      self
       .select('users.id,
-       users.name,
-        round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
-              'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+      users.name,
+      round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+      'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
       .joins(records: :drink)
       .group('users.id')
       .where(records: { date: Date.today.beginning_of_week..Date.today.end_of_week })
-  end
+    end
 
   def self.rank_for_day
     self
-      .select('users.id,
-       users.name,
-        round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
-              'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
-      .joins(records: :drink)
-      .group('users.id')
+    .select('users.id,
+    users.name,
+    round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+    'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+    .joins(records: :drink)
+    .group('users.id')
       .where(records: { date: Date.today.beginning_of_day..Date.today.end_of_day })
+    end
   end
-end

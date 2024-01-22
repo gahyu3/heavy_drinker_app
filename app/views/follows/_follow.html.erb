@@ -1,0 +1,5 @@
+  <% unless user == current_user %>
+    
+  <%= link_to "フォローする", user_follows_path(user.id), data: { turbo_method: :post } %>
+  <%= link_to "フォローはずす", user_follows_path(user.id), data: { turbo_method: :delete } %>
+  <% end %>

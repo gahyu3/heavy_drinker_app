@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8 bg-primary-subtle">
+      <%= search_form_for @q do |f| %>
+      <div data-controller="autocomplete" data-autocomplete-url-value="/users/search" role="combobox">
+        <%= f.label :name_cont %>
+
+        <%= f.search_field :name_cont, class: "form-control", data: { autocomplete_target: 'input' } %>
+        <%= f.hidden_field :name, data: { autocomplete_target: 'hidden' } %>
+        <ul class="list-group" data-autocomplete-target="results"></ul>
+      </div>
+        <%= f.submit %>
+      <% end %>
+      <table>
+        <% @users.each do |user|  %>
+          <% unless user == current_user %>
+            <tr>
+              <td>
+                <%= user.name %>
+              </td>
+              <td>
+                <%= render 'follows/follow', user: user %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+      <%= paginate @users, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+

@@ -26,6 +26,7 @@
           <ul class="dropdown-menu">
             <li><%= link_to t('.account_settings'), edit_profile_path, class: "dropdown-item" %></li>
             <li><%= link_to t('.notification_settings'), edit_notification_setting_path, class: "dropdown-item" %></li>
+            <li><%= link_to t('.follower'), user_followings_path(current_user.id) %></li>
             <li><hr class="dropdown-divider"></li>
             <li><%= link_to t('defaults.logout'), logout_path, class: "dropdown-item", data: { turbo_method: :delete } %></li>
           </ul>
@@ -40,5 +41,6 @@
           <i class= "fa-regular fa-bell-slash" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
           <%= render "shared/notification", user_rank: @user_rank %>
         <% end %>
+        <%= link_to "jj" , users_path %>
       </div>
   </nav>

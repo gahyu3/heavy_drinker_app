@@ -3,6 +3,11 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create show]
 
+  def index
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).all.order(created_at: :desc).page(params[:page]).per(3)
+  end
+
   def new
     @user = User.new
   end
@@ -54,6 +59,13 @@ class UsersController < ApplicationController
                        .group('users.id,categories.name')
                        .where(records: { date: Date.today.beginning_of_month..Date.today.end_of_month,
                                          user_id: current_user.id })
+  end
+
+  def search
+    @users = User.where("name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

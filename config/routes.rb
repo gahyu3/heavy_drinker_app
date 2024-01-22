@@ -12,7 +12,12 @@ Rails.application.routes.draw do
   delete 'records/:day_date', to: 'records#record_destroy', as: :record_destroy
   delete 'drinks/:id', to: 'records#drink_destroy', as: :drink_destroy
 
-  resources :users, only: %i[new create show]
+  resources :users, only: %i[new create show index] do
+    get :search, on: :collection
+    resource :follows, only: %i[index create destroy]
+      get "followings" => "follows#followings", as: "followings"
+      get "followers" => "follows#followers", as: "followers"
+  end
   resources :records, only: %i[index new create]
   resources :drinks, only: %i[new create]
   resources :ranks, only: %i[index]

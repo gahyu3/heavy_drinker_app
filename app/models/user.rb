@@ -18,8 +18,8 @@ class User < ApplicationRecord
   has_many :drinks, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_one :notification_setting, dependent: :destroy
-  has_many :active_follow, class_name: "Follow", foreign_key: "follower_id"
-  has_many :passive_follow, class_name: "Follow", foreign_key: "followed_id"
+  has_many :active_follow, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
+  has_many :followings, through: :active_follow, source: :followed
 
   # users_controller
 

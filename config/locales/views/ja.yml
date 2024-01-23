@@ -3,6 +3,15 @@ ja:
     previous: "< 先月"
     next: "来月 >"
     today: '本日'
+    
+  views:
+    pagination:
+      first: '最初'
+      last: '最後'
+      previous: '前'
+      next: '次'
+      truncate: '...'
+
   defaults:
     login: 'ログイン'
     register: '登録'
@@ -14,6 +23,8 @@ ja:
     indicate: '表示'
     send: '送信'
     password_reset: 'パスワードリセット'
+    search: '検索'
+
   shared:
     header:
       record: '飲酒量記録'
@@ -21,6 +32,7 @@ ja:
       rank: 'ランキング'
       account_settings: 'アカウント設定'
       notification_settings: '通知設定'
+      follower: 'お気に入り'
     notification:
       title: 'お知らせ'
     footer:

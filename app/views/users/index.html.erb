@@ -1,37 +1,39 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-8 bg-primary-subtle">
-      <%= search_form_for @q do |f| %>
-      <div data-controller="autocomplete" data-autocomplete-url-value="/users/search" role="combobox">
-        <%= f.label :name_cont %>
-
-        <%= f.search_field :name_cont, class: "form-control", data: { autocomplete_target: 'input' } %>
-        <%= f.hidden_field :name, data: { autocomplete_target: 'hidden' } %>
-        <ul class="list-group" data-autocomplete-target="results"></ul>
-      </div>
-        <%= f.submit %>
-      <% end %>
-      <table>
-        <% @users.each do |user|  %>
-          <% unless user == current_user %>
-            <tr>
-              <td>
-                <%= user.name %>
-              </td>
-              <td>
-                <%= render 'follows/follow', user: user %>
-              </td>
-            </tr>
-          <% end %>
+    <div class="col-8 mx-auto">
+      <div class="search_field mt-5 mb-5">
+        <%= search_form_for @q do |f| %>
+          <div data-controller="autocomplete" data-autocomplete-url-value="/users/search" role="combobox" class="row g-3 justify-content-center">
+            <div class="col-8">
+              <%= f.search_field :name_cont, data: { autocomplete_target: 'input' }, class: "form-control" %>
+              <%= f.hidden_field :name, data: { autocomplete_target: 'hidden' } %>
+              <ul class="list-group" data-autocomplete-target="results"></ul>
+            </div>
+            <div class="col-auto">
+              <%= f.submit t('defaults.search'), class: 'btn btn-primary' %>
+            </div>
+          </div>
         <% end %>
+      </div>
+      <table class="table">
+        <tbody>
+          <% @users.each do |user|  %>
+            <% unless user == current_user %>
+              <tr>
+                <td class="text-center"><%= image_tag user.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
+                <td class="text-end"><%= user.name %></td>
+                <td class="text-end align-middle">
+                  <%= render 'follows/follow', user: user %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
       </table>
-      <%= paginate @users, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
+      <div class="d-flex justify-content-center mt-5">
+        <%= paginate @users, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
+      </div>
     </div>
   </div>
 
 </div>
-
-
-
-
-

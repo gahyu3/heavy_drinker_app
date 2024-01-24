@@ -1,5 +1,5 @@
   <% if current_user.followings.include?(user) %>
-    <%= link_to "お気に入り解除", user_follows_path(user.id), class: "btn btn-light border rounded-pill", style: "--bs-btn-font-size: .75rem;", data: { turbo_method: :delete } %>
+    <%= link_to "お気に入り解除", user_follows_path(user.id), class: "btn btn-light border rounded-pill", style: "--bs-btn-font-size: .75rem;", data: { turbo_method: :delete, turbo_confirm: "お気に入り解除しますか？" } %>
     <% else %>
     <%= link_to "お気に入り登録", user_follows_path(user.id), class: "btn btn-primary rounded-pill", style: "--bs-btn-font-size: .75rem;", data: { turbo_method: :post } %>
   <% end %>

@@ -32,7 +32,7 @@ ja:
       rank: 'ランキング'
       account_settings: 'アカウント設定'
       notification_settings: '通知設定'
-      follower: 'お気に入り'
+      follower: 'お気に入りリスト'
     notification:
       title: 'お知らせ'
     footer:

@@ -9,12 +9,11 @@ class FollowsController < ApplicationController
   def destroy
     user = User.find(params[:user_id])
     current_user.active_follow.find_by(followed_id: user).destroy
-    redirect_to users_path
+    redirect_to request.referer
   end
 
   def followings
-    user = User.find(params[:user_id])
-    @follow = user.active_follow.map(&:followed)
+    @follow = current_user.followings.all.page(params[:page]).per(10)
   end
 
   

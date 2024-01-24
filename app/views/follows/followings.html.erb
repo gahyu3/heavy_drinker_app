@@ -1,4 +1,23 @@
-<% @follow.each do |follow| %>
-  <%= follow.name %>
-  
-<% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8 mx-auto mt-5">
+      <table class="table">
+        <tbody>
+          <% @follow.each do |user|  %>
+              <tr>
+                <td class="text-center"><%= image_tag user.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
+                <td class="text-end"><%= user.name %></td>
+                <td class="text-end align-middle">
+                  <%= render 'follows/follow', user: user %>
+                </td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center mt-5">
+        <%= paginate @follow, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
+      </div>
+    </div>
+  </div>
+
+</div>

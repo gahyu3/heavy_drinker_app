@@ -15,8 +15,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create show index] do
     get :search, on: :collection
     resource :follows, only: %i[index create destroy]
-      get "followings" => "follows#followings", as: "followings"
-      get "followers" => "follows#followers", as: "followers"
+      get "followings", to: "follows#followings", as: "followings"
   end
   resources :records, only: %i[index new create]
   resources :drinks, only: %i[new create]

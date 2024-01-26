@@ -12,6 +12,8 @@
           <%= f.label 'week-radio','週間' %>
           <%= f.radio_button :period, 'day', checked: params[:period] == 'day', id: 'day-radio' %>
           <%= f.label 'day-radio','日間' %>
+          <%= f.check_box :favorite_users, class: 'form-check-input' %>
+          <%= f.label 'favorite_users', 'お気に入りユーザーのみ表示', class: 'form-check-label' %>
           <%= f.submit t('defaults.indicate'), class: 'btn btn-primary' %>
         <% end %>
       </div>
@@ -28,7 +30,4 @@
       </table>
     </div>
   </div>
-
-    
-
 </div>

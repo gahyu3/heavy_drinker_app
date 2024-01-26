@@ -3,15 +3,28 @@
 class RanksController < ApplicationController
   def index
     period = params[:period] || 'month'
+    favorite_users = params[:favorite_users]
     @ranks = case period
-             when 'month'
-               User.rank_for_month
-             when 'week'
-               User.rank_for_week
-             when 'day'
-               User.rank_for_day
-             end
-
+              when 'month'
+                if favorite_users == '1'
+                  current_user.followings.rank_for_month
+                else
+                  User.rank_for_month
+                end
+              when 'week'
+                if favorite_users == '1'
+                  current_user.followings.rank_for_week
+                else
+                  User.rank_for_week
+                end
+              when 'day'
+                if favorite_users == '1'
+                  current_user.followings.rank_for_day
+                else
+                  User.rank_for_day
+                end
+              end
+            
     @ranks_time = case period
                   when 'month'
                     [Date.today.beginning_of_month, Date.today.end_of_month]

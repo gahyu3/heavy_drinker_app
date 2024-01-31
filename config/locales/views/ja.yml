@@ -38,8 +38,17 @@ ja:
     footer:
       privacy: 'プライバシーポリシー'
       terms_of_service: '利用規約'
+  static_pages:
+    top:
+      title: 'トップページ'
+    rule:
+      title: '利用規約'
+    privacy:
+      title: 'プライバシーポリシー'
 
   users:
+    index:
+      title: 'ユーザー検索'
     new:
       title: '新規登録'
     show:

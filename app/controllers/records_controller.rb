@@ -4,7 +4,9 @@ class RecordsController < ApplicationController
   before_action :set_selected_date, only: %i[new edit]
   before_action :set_day_date, only: %i[new edit]
 
-  def index; end
+  def index
+    @users = User.all
+  end
 
   def new
     @record = Record.new

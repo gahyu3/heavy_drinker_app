@@ -1,11 +1,13 @@
 <% content_for(:title, t('.title')) %>
 <div class="container-fluid">
-  <%= month_calendar do |date| %>
-    <% if current_user.records.exists?(date: date) %>
-        <%= link_to date.day, new_record_path(selected_date: date), class: "day_#{date}   text-decoration-none"%>
-        <div><i class="fa-solid fa-champagne-glasses"></i></div>
-      <% else %>
-        <%= link_to date.day, new_record_path(selected_date: date), class: "day_#{date} text-decoration-none"  %>
+    <%= month_calendar do |date| %>
+      <% if current_user.records.exists?(date: date) %>
+          <%= link_to new_record_path(selected_date: date), class: "day_#{date} text-decoration-none d-flex h-100 position-relative nav-link" do %>
+          <%= date.day%>
+            <div class="position-absolute top-50 start-50 translate-middle" style="font-size: 25px"><i class="fa-solid fa-champagne-glasses"></i></div>
+          <% end %>
+        <% else %>
+          <%= link_to date.day, new_record_path(selected_date: date), class: "day_#{date}   text-decoration-none d-flex h-100 nav-link" %>
+      <% end %>
     <% end %>
-  <% end %>
 </div>

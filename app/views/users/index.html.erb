@@ -22,7 +22,7 @@
             <% unless user == current_user %>
               <tr>
                 <td class="text-center"><%= image_tag user.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
-                <td class="text-end"><%= user.name %></td>
+                <td class="text-end align-middle"><%= user.name %></td>
                 <td class="text-end align-middle">
                   <%= render 'follows/follow', user: user %>
                 </td>
@@ -36,5 +36,4 @@
       </div>
     </div>
   </div>
-
 </div>

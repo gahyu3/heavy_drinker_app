@@ -2,28 +2,39 @@
 
 class RanksController < ApplicationController
   def index
+
     period = params[:period] || 'month'
     favorite_users = params[:favorite_users]
-    @ranks = case period
-              when 'month'
-                if favorite_users == '1'
-                  current_user.followings.rank_for_month
-                else
-                  User.rank_for_month
+    drinks_volume = params[:drinks_volume]
+    category_name = params[:category_name]
+
+    rank_scope = case period
+                when 'month' then User.month
+                when 'week'  then User.week
+                when 'day'   then User.day
+                else User.month 
                 end
-              when 'week'
-                if favorite_users == '1'
-                  current_user.followings.rank_for_week
-                else
-                  User.rank_for_week
-                end
-              when 'day'
-                if favorite_users == '1'
-                  current_user.followings.rank_for_day
-                else
-                  User.rank_for_day
-                end
-              end
+
+    if favorite_users == '1'
+      if drinks_volume == '1'
+        rank_scope = rank_scope.follow_volume_rank(current_user)
+        rank_scope = rank_scope.follow_category_volume_rank(current_user, category_name) if category_name.present?
+      else
+        rank_scope = rank_scope.follow_alcohol_rank(current_user)
+        rank_scope = rank_scope.follow_category_alcohol_rank(current_user, category_name) if category_name.present?
+      end
+    else
+      if drinks_volume == '1'
+        rank_scope = rank_scope.volume_rank
+        rank_scope = rank_scope.category_volume_rank(category_name) if category_name.present?
+      else
+        rank_scope = rank_scope.alcohol_rank
+        rank_scope = rank_scope.category_alcohol_rank(category_name) if category_name.present?
+      end
+    end
+
+    @ranks = rank_scope
+
             
     @ranks_time = case period
                   when 'month'

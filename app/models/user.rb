@@ -21,6 +21,10 @@ class User < ApplicationRecord
   has_many :active_follow, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :active_follow, source: :followed
 
+  scope :month, -> { where(records: { date: Date.today.beginning_of_month..Date.today.end_of_month }) }
+  scope :week, -> { where(records: { date: Date.today.beginning_of_week..Date.today.end_of_week }) }
+  scope :day, -> { where(records: { date: Date.today.beginning_of_day..Date.today.end_of_day }) }
+
   # users_controller
 
   def self.rank_day_user
@@ -104,37 +108,113 @@ class User < ApplicationRecord
 
   
   # ranks_controller
-  
-  def self.rank_for_month
-    self
-      .select('users.id,
-      users.name,
-      round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
-              'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
-              .joins(records: :drink)
-      .group('users.id')
-      .where(records: { date: Date.today.beginning_of_month..Date.today.end_of_month })
+
+    def self.alcohol_rank
+      self
+        .select('users.id,
+                users.name,
+                users.avatar,
+                round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+                'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+        .joins(records: :drink)
+        .group('users.id')
     end
 
-    def self.rank_for_week
+    def self.volume_rank
+      self
+      .select('users.id,
+              users.name,
+              users.avatar,
+              sum(records.quantity * drinks.volume) as total_volume',
+              'RANK() OVER (ORDER BY sum(records.quantity * drinks.volume)desc) AS user_rank' )
+      .joins(records: :drink)
+      .group('users.id')
+    end
+
+    def self.category_alcohol_rank(category_name)
+      self
+      .select('users.id,
+            users.name,
+            users.avatar,
+            categories.id as category_id,
+            categories.name as category_name,
+            round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+          'RANK() OVER (PARTITION BY categories.id ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+      .joins(records: { drink: :category })
+      .group('users.id, categories.id')
+      .where(categories: { name: category_name })
+    end
+
+    def self.category_volume_rank(category_name)
+      self
+      .select('users.id,
+              users.name,
+              users.avatar,
+              sum(records.quantity * drinks.volume) as total_volume',
+              'RANK() OVER (ORDER BY sum(records.quantity * drinks.volume)desc) AS user_rank' )
+      .joins(records: { drink: :category })
+      .group('users.id, categories.id')
+      .where(categories: { name: category_name })
+    end
+
+
+
+    def self.follow_alcohol_rank(user)
+      self
+        .select('users.id,
+                users.name,
+                users.avatar,
+                round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+                'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+        .joins(records: :drink)
+        .joins("LEFT JOIN follows ON follows.followed_id = users.id AND follows.follower_id = #{user.id}")
+        .group('users.id')
+        .where('users.id = ? OR follows.id IS NOT NULL', user.id)
+    end
+
+    def self.follow_volume_rank(user)
+      self
+      .select('users.id,
+              users.name,
+              users.avatar,
+              sum(records.quantity * drinks.volume) as total_volume',
+              'RANK() OVER (ORDER BY sum(records.quantity * drinks.volume)desc) AS user_rank' )
+      .joins(records: :drink)
+      .joins("LEFT JOIN follows ON follows.followed_id = users.id AND follows.follower_id = #{user.id}")
+      .group('users.id')
+      .where('users.id = ? OR follows.id IS NOT NULL', user.id)
+    end
+
+    def self.follow_category_alcohol_rank(user,category_name)
+      self
+      .select('users.id,
+            users.name,
+            users.avatar,
+            categories.id as category_id,
+            categories.name as category_name,
+            round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
+          'RANK() OVER (PARTITION BY categories.id ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
+      .joins(records: { drink: :category })
+      .joins("LEFT JOIN follows ON follows.followed_id = users.id AND follows.follower_id = #{user.id}")
+      .group('users.id, categories.id')
+      .where('users.id = ? OR follows.id IS NOT NULL', user.id)
+      .where(categories: { name: category_name })
+    end
+
+    def self.follow_category_volume_rank(user,category_name)
       self
       .select('users.id,
       users.name,
-      round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
-      'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
-      .joins(records: :drink)
-      .group('users.id')
-      .where(records: { date: Date.today.beginning_of_week..Date.today.end_of_week })
+      users.avatar,
+      sum(records.quantity * drinks.volume) as total_volume',
+      'RANK() OVER (ORDER BY sum(records.quantity * drinks.volume)desc) AS user_rank' )
+      .joins(records: { drink: :category })
+      .joins("LEFT JOIN follows ON follows.followed_id = users.id AND follows.follower_id = #{user.id}")
+      .group('users.id, categories.id')
+      .where('users.id = ? OR follows.id IS NOT NULL', user.id)
+      .where(categories: { name: category_name })
     end
 
-  def self.rank_for_day
-    self
-    .select('users.id,
-    users.name,
-    round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) AS total_quantity',
-    'RANK() OVER (ORDER BY round(sum(records.quantity * drinks.volume * drinks.degree/100 * 0.8)) DESC) AS user_rank')
-    .joins(records: :drink)
-    .group('users.id')
-      .where(records: { date: Date.today.beginning_of_day..Date.today.end_of_day })
-    end
+    
+
   end

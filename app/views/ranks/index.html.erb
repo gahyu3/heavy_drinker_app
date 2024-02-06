@@ -2,22 +2,39 @@
 <div class="container-fluid">
   <div class="rank_field row">
     <h1 class="text-center"><%= t('.title') %></h1>
-    <div class="rank_list col-6 mx-auto">
-      <%= "#{@ranks_time[0].strftime("%Y/%m/%d")}" "~" "#{@ranks_time[1].strftime("%Y/%m/%d")}"%>
-      <div>
+    <div class="rank_list col-8 mx-auto">
+      <%= "期間：#{@ranks_time[0].strftime("%Y/%m/%d")}" "~" "#{@ranks_time[1].strftime("%Y/%m/%d")}"%>
         <%= form_with(url: { controller: 'ranks', action: 'index' }, method: 'get', local: false) do |f| %>
-          <%= f.radio_button :period, 'month', checked: params[:period] == 'month' || params[:period].nil?, id: 'month-radio' %>
-          <%= f.label 'month-radio','月間' %>
-          <%= f.radio_button :period, 'week', checked: params[:period] == 'week', id: 'week-radio' %>
-          <%= f.label 'week-radio','週間' %>
-          <%= f.radio_button :period, 'day', checked: params[:period] == 'day', id: 'day-radio' %>
-          <%= f.label 'day-radio','日間' %>
-          <%= f.check_box :favorite_users, class: 'form-check-input' %>
-          <%= f.label 'favorite_users', 'お気に入りユーザーのみ表示', class: 'form-check-label' %>
-          <%= f.submit t('defaults.indicate'), class: 'btn btn-primary' %>
-        <% end %>
-      </div>
+        <div class="row">
+          <div class="col-8">
+            <%= f.radio_button :period, 'month', checked: params[:period] == 'month' || params[:period].nil?, id: 'month-radio' %>
+            <%= f.label 'month-radio','月間' %>
+            <%= f.radio_button :period, 'week', checked: params[:period] == 'week', id: 'week-radio' %>
+            <%= f.label 'week-radio','週間' %>
+            <%= f.radio_button :period, 'day', checked: params[:period] == 'day', id: 'day-radio' %>
+            <%= f.label 'day-radio','日間' %>
+            <%= f.check_box :favorite_users, checked: params[:favorite_users] == '1' %>
+            <%= f.label 'favorite_users', 'お気に入りユーザーのみ表示' %>
+            <%= f.check_box :drinks_volume, checked: params[:drinks_volume] == '1'%>
+            <%= f.label 'drinks_volume', '飲酒量比較' %>
+            <%= f.label 'category_name', 'カテゴリー' %>
+            <%= f.select :category_name, options_for_select(Category.pluck(:name), params[:category_name]), { include_blank: true }%>
+          </div>
+            <div class="col-3 text-end">
+              <%= f.submit t('defaults.indicate'), class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+        </div>
       <table class="table align-middle mt-5">
+        <thead>
+          <tr>
+            <% if params[:drinks_volume] == "1" %>
+              <th>飲酒量</th>
+            <% else %>
+              <th>純アルコール量</th>
+            <% end %>
+          </tr>
+        </thead>
         <tbody>
           <%= render "ranks/ranks", ranks: @ranks %>
         </tbody>

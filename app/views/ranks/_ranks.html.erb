@@ -4,28 +4,44 @@
             <td><i class="fa-solid fa-trophy" style="color: #f5ee19;"></i><%= rank.user_rank %>位</td>
             <td><%= image_tag rank.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
             <td><%= rank.name %></td>
-            <td><%= rank.total_quantity.round %>g</td>
+            <% if rank.has_attribute?(:total_quantity) %>
+              <td><%= rank.total_quantity.round %>g</td>
+            <% else %>
+              <td><%= rank.total_volume %>ml</td>
+            <% end %>
           </tr>
           <% elsif rank.user_rank == 2 %>
           <tr class="<%= "table-success" if rank.id == current_user.id %>">
             <td><i class="fa-solid fa-trophy" style="color: #d6d1d4;"></i><%= rank.user_rank %>位</td>
             <td><%= image_tag rank.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
             <td><%= rank.name %></td>
-            <td><%= rank.total_quantity.round %>g</td>
+            <% if rank.has_attribute?(:total_quantity) %>
+              <td><%= rank.total_quantity.round %>g</td>
+            <% else %>
+              <td><%= rank.total_volume %>ml</td>
+            <% end %>
           </tr>
           <% elsif rank.user_rank == 3 %>
           <tr class="<%= "table-success" if rank.id == current_user.id %>">
             <td><i class="fa-solid fa-trophy" style="color: #f49c62;"></i><%= rank.user_rank %>位</td>
             <td><%= image_tag rank.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
             <td><%= rank.name %></td>
-            <td><%= rank.total_quantity.round %>g</td>
+            <% if rank.has_attribute?(:total_quantity) %>
+              <td><%= rank.total_quantity.round %>g</td>
+            <% else %>
+              <td><%= rank.total_volume %>ml</td>
+            <% end %>
           </tr>
           <% else %>
           <tr class="<%= "table-success" if rank.id == current_user.id %>">
             <td><%= rank.user_rank %>位</td>
             <td><%= image_tag rank.avatar.url, class: 'rounded-circle',size: "50x50" %></td>
             <td><%= rank.name %></td>
-            <td><%= rank.total_quantity.round %>g</td>
+            <% if rank.has_attribute?(:total_quantity) %>
+              <td><%= rank.total_quantity.round %>g</td>
+            <% else %>
+              <td><%= rank.total_volume %>ml</td>
+            <% end %>
           </tr>
           <% end %>
         <% end %>

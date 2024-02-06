@@ -21,7 +21,7 @@
             <%= f.select :category_name, options_for_select(Category.pluck(:name), params[:category_name]), { include_blank: true }%>
           </div>
             <div class="col-3 text-end">
-              <%= f.submit t('defaults.indicate'), class: 'btn btn-primary ms-5' %>
+              <%= f.submit t('defaults.indicate'), class: 'btn btn-primary' %>
             </div>
           <% end %>
         </div>

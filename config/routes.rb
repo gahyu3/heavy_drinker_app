@@ -2,10 +2,15 @@
 
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+  
   root 'static_pages#top'
   get 'privacy', to: 'static_pages#privacy'
   get 'rule', to: 'static_pages#rule'
-
+  
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback" 
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+  
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'

@@ -1,0 +1,2 @@
+sorcery:
+    google_callback_url: 'http://https://heavy-drinker-app.fly.dev/oauth/callback?provider=google'

@@ -23,7 +23,7 @@
       <div class="text-center">
         <%= link_to t('.add_alcohol'), new_drink_path(selected_date: @day_date, selected_category: @selected_category_id) , class: "btn btn-primary" %>
       </div>
-      <div class="text-center mt-5">
+      <div class="text-center mt-5 mb-5">
         <%= f.submit t('defaults.save'), class: 'btn btn-primary' %>
       </div>
     <% end %>

@@ -9,11 +9,11 @@
       <% user_rank.each do |rank|%>
       <tr>
         <% if rank.day? %>
-          <td><%= rank.start_date.strftime("%m月%d日") %>のランキングは<%= rank.rank %>位でした</td>
+          <td><%= rank.start_date.strftime("%-m月%d日") %>のランキングは<%= rank.rank %>位でした</td>
         <% elsif rank.week? %>
-          <td><%= rank.start_date.strftime("%m月%d日") %>~<%= rank.end_date.strftime("%m月%d日") %>のランキングは<%= rank.rank %>位でした</td>
+          <td><%= rank.start_date.strftime("%-m月%d日") %>~<%= rank.end_date.strftime("%-m月%d日") %>のランキングは<%= rank.rank %>位でした</td>
         <% else %>
-          <td><%= rank.start_date.strftime("%m月") %>のランキングは<%= rank.rank %>位でした</td>
+          <td><%= rank.start_date.strftime("%-m月") %>のランキングは<%= rank.rank %>位でした</td>
         <% end %>
         
       </tr>

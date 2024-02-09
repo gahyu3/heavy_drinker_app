@@ -13,7 +13,10 @@ class OauthsController < ApplicationController
     else
       begin
         # ユーザーが存在しない場合はプロバイダ情報を元に新規ユーザーを作成し、ログイン
-        signup_and_login(provider)
+        @user = create_from(provider)
+        @user.create_default_drinks
+        NotificationSetting.create(user_id: @user.id)
+        auto_login(@user)
         redirect_to records_path, success:"#{provider.titleize}アカウントでログインしました"
       rescue
         redirect_to login_path, danger:"#{provider.titleize}アカウントでのログインに失敗しました"
@@ -27,9 +30,4 @@ class OauthsController < ApplicationController
     params.permit(:code, :provider)
   end
 
-  def signup_and_login(provider)
-    @user = create_from(provider)
-    reset_session
-    auto_login(@user)
-  end
 end

@@ -1,21 +1,75 @@
 <% content_for(:title, t('.title')) %>
   <div class="container-fluid">
-    <div class="row h-100">
-      <div class="col-7 position-relative">
-        <div class="position-absolute top-50 start-0 translate-middle-y">
-          <h1 class="mb-5">酒飲みチェッカー へようこそ！</h1>
-          <h4>お酒好きのための、新しい交流の場がここにあります！このアプリでは、ユーザーが飲んだお酒の量を記録し、日々のランキングで競い合うことができるサービスです。</h4>
-          <h4>友達や他のユーザーと交流し、誰が一番お酒を楽しんでいるか競い合いましょう！</h4>
+      <div class="row mt-5">
+        <div class="col-7">
+          <div class="">
+            <h1 class="mb-5">酒飲みチェッカー へようこそ！</h1>
+            <h4>お酒好きのための、新しい交流の場がここにあります！このアプリでは、ユーザーが飲んだお酒の量を記録し、日々のランキングで競い合うことができるサービスです。</h4>
+            <h4>友達や他のユーザーと交流し、誰が一番お酒を楽しんでいるか競い合いましょう！</h4>
+          </div>
+        </div>
+        <div class="top_img col-5">
         </div>
       </div>
-      <div class="top_img col-5 position-relative">
-        <p class="position-absolute bottom-0 end-0" style="font-size: 9px;"><a href="https://jp.freepik.com/free-vector/happy-friends-celebrating-event-together_9649916.htm#query=drink%20party&position=4&from_view=search&track=ais&uuid=0aee8c5b-92b0-4166-aefb-e7e3807cf742">著作者：pch.vector</a>／出典：Freepik</p>
+      
+      <div class="text-center py-3 mt-5">
+        <%= link_to "はじめる", records_path, class: "btn btn-primary"%>
       </div>
+    <div class="bg-body-tertiary">
+      <div class="text-center pt-5 mb-5">
+        <h2>使い方</h2>
+      </div>
+        <div class="row pt-3 pb-3">
+          <div class="col text-center">
+            <%= image_tag '記録.png', size: "400x300" %>
+          </div>
+          <div class="col mt-3">
+            <h5 class="mb-5">飲酒登録</h5>
+            <p>カレンダーから日付を選択し、カテゴリーごとに、お酒を飲んだかの登録ができます。</p>
+          </div>
+
+        </div>
+        <div class="row pt-3 pb-3">
+          <div class="col text-center">
+            <%= image_tag 'お酒登録.png', size: "400x300" %>
+          </div>
+          <div class="col mt-3">
+            <h5 class="mb-5">お酒登録</h5>
+            <p>お酒を追加ボタンから、自分の好きなお酒を登録できます。</p>
+          </div>
+        </div>
+        <div class="row pt-3 pb-3">
+          <div class="col text-center">
+            <%= image_tag 'データ.png', size: "400x300" %>
+          </div>
+          <div class="col mt-3">
+            <h5 class="mb-5">グラフ</h5>
+            <p>当月の、飲酒量をグラフで見ることができます。</p>
+          </div>
+        </div>
+        <div class="row pt-3 pb-3">
+          <div class="col text-center">
+            <%= image_tag 'ランキング.png', size: "400x300" %>
+          </div>
+          <div class="col mt-3">
+            <h5 class="mb-5">ランキング</h5>
+            <p>飲んだアルコール量を、ランキングで、見ることができます。</p>
+            <p>様々な条件で、ランキングを出してみましょう。</p>
+          </div>
+        </div>
+
+        <div class="row pt-3 pb-3">
+          <div class="col text-center">
+            <%= image_tag 'お知らせ.png', size: "400x300" %>
+          </div>
+          <div class="col mt-3">
+            <h5 class="mb-5">通知</h5>
+            <p>ランキングを通知してくれます。</p>
+            <p>設定画面で、オンオフを切り替えられます。</p>
+          </div>
+        </div>
 
     </div>
+  </div>
 
-  </div>
-  <div class="text-center py-3">
-    <%= link_to "はじめる", records_path, class: "btn btn-primary"%>
-  </div>
   

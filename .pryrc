@@ -2,7 +2,9 @@
 
 begin
   require 'hirb'
-rescue LoadError
+rescue LoadError => e
+  # ログにエラーメッセージを出力するなどの適切なエラーハンドリングを行う
+  puts "Error loading Hirb: #{e.message}"
 end
 
 if defined? Hirb

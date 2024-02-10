@@ -1,9 +1,8 @@
 class FollowsController < ApplicationController
-
   def create
-      user = User.find(params[:user_id])
-      current_user.active_follow.create(followed: user)
-      redirect_to users_path
+    user = User.find(params[:user_id])
+    current_user.active_follow.create(followed: user)
+    redirect_to users_path
   end
 
   def destroy
@@ -15,6 +14,4 @@ class FollowsController < ApplicationController
   def followings
     @follow = current_user.followings.all.page(params[:page]).per(10)
   end
-
-  
 end

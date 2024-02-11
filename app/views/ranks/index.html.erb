@@ -3,10 +3,10 @@
   <div class="rank_field row">
     <h1 class="text-center"><%= t('.title') %></h1>
     <div class="rank_list col-8 mx-auto">
-      <%= "期間：#{@ranks_time[0].strftime("%Y/%m/%d")}" "~" "#{@ranks_time[1].strftime("%Y/%m/%d")}"%>
+      <%= "期間：#{@ranks_time[0].strftime("%Y/%m/%d")}" "〜" "#{@ranks_time[1].strftime("%Y/%m/%d")}"%>
         <%= form_with(url: { controller: 'ranks', action: 'index' }, method: 'get', local: false) do |f| %>
         <div class="row">
-          <div class="col-8">
+          <div class="col-9">
             <%= f.radio_button :period, 'month', checked: params[:period] == 'month' || params[:period].nil?, id: 'month-radio' %>
             <%= f.label 'month-radio','月間' %>
             <%= f.radio_button :period, 'week', checked: params[:period] == 'week', id: 'week-radio' %>

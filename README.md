@@ -52,54 +52,47 @@
 
 ・x投稿機能
 
-### 機能の実装方針予定
-Ruby: 3.0系
 
-Rails: 7.0系
+## 使用技術
 
-ユーザー登録・ログイン機能 socerry
-
-グラフ表示 chartkick
-
-カレンダー表示 SimpleCalendar
-
-cssフレームワーク　　bootstrap
-
-画像登録　carrierwave
-
-
-本リリース
-通知機能 ActionCable
-
-ユーザーの検索機能 オートコンプリート rails-autocomplete
-
-### 使用技術
 バックエンド
- ・Ruby　3.2.2
- ・Ruby on Rails 7.0.5
-　　・gem
+
+ 　・Ruby　3.2.2
+ 
+ 　・Ruby on Rails 7.0.5
+ 
+　　　・gem
+  
   ・sorcery
+  
   ・simple_calendar
+  
   ・carrierwave
+  
   ・chartkick
+  
   ・ransack
+  
   ・kaminari
   
  
  
 
 フロントエンド
- ・Bootstrap5
- ・Hotwire(Turbo, Stimulus)
+
+ 　・Bootstrap5
+ 
+ 　・Hotwire(Turbo, Stimulus)
 
 データベース
+
 　・PostgreSQL
 
 インフラ
 
 　・fly.io
 
- ＃＃　ER図
+## ER図
  ![er](https://github.com/gahyu3/heavy_drinker_app/assets/62708936/a05aae4b-06b9-47a5-a889-968a912a20ec)
 
 

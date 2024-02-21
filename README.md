@@ -16,11 +16,12 @@
 | ログイン機能| カレンダー |
 ----|---- 
 | <img width="400" alt="スクリーンショット 2024-02-20 22 07 06" src="https://github.com/gahyu3/heavy_drinker_app/assets/62708936/db34847d-61f1-4273-ae8a-f82ccfa55e3d"> | <img width="400" alt="スクリーンショット 2024-02-20 22 01 44" src="https://github.com/gahyu3/heavy_drinker_app/assets/62708936/0caf6476-7249-4766-820d-43308953af23">|
-|gg|i|
+||カレンダーから日付を選択|
 
 | 飲酒登録| お酒登録 |
 ----|---- 
 |  <img width="400" alt="記録" src="https://github.com/gahyu3/heavy_drinker_app/assets/62708936/c2c35fb6-52cf-460b-8459-5e4f9cd61e5d">|<img width="400" alt="お酒登録" src="https://github.com/gahyu3/heavy_drinker_app/assets/62708936/e10e26d0-dd86-4548-af4c-f5258c72d117">|
+|||
 
 | データ| ランキング |
 ----|---- 

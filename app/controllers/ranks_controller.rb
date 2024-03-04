@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RanksController < ApplicationController
-  def index
+  def index # rubocop:disable Metrics/AbcSize
     period = params[:period] || 'month'
     favorite_users = params[:favorite_users]
     drinks_volume = params[:drinks_volume]

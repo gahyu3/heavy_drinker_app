@@ -1,6 +1,7 @@
     <ul class="list-unstyled p-2 border border-dark border-3">
       <% category_totals.each do |total| %>
         <li>
+          <%= image_tag "#{total.name}.png", size: "50x50", alt: total.name if total.name %>
           <%= total.name %>
           <%= total.total_quantity.to_i %>g
           <% resurt, label = case total.name

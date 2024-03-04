@@ -6,7 +6,7 @@
       <%= "期間：#{@ranks_time[0].strftime("%Y/%m/%d")}" "〜" "#{@ranks_time[1].strftime("%Y/%m/%d")}"%>
         <%= form_with(url: { controller: 'ranks', action: 'index' }, method: 'get', local: false) do |f| %>
         <div class="row">
-          <div class="col-9">
+          <div class="col-8">
             <%= f.radio_button :period, 'month', checked: params[:period] == 'month' || params[:period].nil?, id: 'month-radio' %>
             <%= f.label 'month-radio','月間' %>
             <%= f.radio_button :period, 'week', checked: params[:period] == 'week', id: 'week-radio' %>
@@ -20,7 +20,7 @@
             <%= f.label 'category_name', 'カテゴリー' %>
             <%= f.select :category_name, options_for_select(Category.pluck(:name), params[:category_name]), { include_blank: true }%>
           </div>
-            <div class="col-3 text-end">
+            <div class="col-4 text-end">
               <%= f.submit t('defaults.indicate'), class: 'btn btn-primary' %>
             </div>
           <% end %>
@@ -39,7 +39,7 @@
           <%= render "ranks/ranks", ranks: @ranks %>
         </tbody>
       </table>
-      <div class="text-center mb-5 mt-5" style="font-size: 40px">:</div>
+      <div class="text-center mb-5 mt-5" style="font-size: 40px"></div>
       <table class="table align-middle">
         <tbody>
           <%= render "ranks/current_ranks", ranks: @ranks %>
